@@ -1,0 +1,143 @@
+{% comment %}
+  PAUZE EXCLUSIVE OFFER BANNER — Banner CTA grande tipo "Get 50% OFF Intimate Harmony Bundle" de O Positiv URO
+  Pack x3 + Frother con precio comparativo y 2 CTAs (Suscribirme / Comprar una vez)
+{% endcomment %}
+
+<section class="pauze-section pauze-section--cacao pauze-exclusive" data-section-id="{{ section.id }}">
+  <div class="pauze-container">
+    <div class="pauze-exclusive__inner">
+      <div class="pauze-exclusive__tag">
+        <span>⚡</span> {{ section.settings.tag | default: 'OFERTA EXCLUSIVA' }}
+      </div>
+      <h2 class="pauze-exclusive__title">{{ section.settings.title | default: 'Pack x3 + Frother eléctrico' }}</h2>
+      <p class="pauze-exclusive__sub">{{ section.settings.sub | default: 'Tu kit completo para arrancar el ritual nocturno' }}</p>
+
+      <div class="pauze-exclusive__price-row">
+        <span class="pauze-exclusive__price-compare">${{ section.settings.compare_price | default: '124.600' }}</span>
+        <span class="pauze-exclusive__price-final">${{ section.settings.final_price | default: '109.900' }}</span>
+        <span class="pauze-exclusive__savings">Ahorrás $14.700</span>
+      </div>
+
+      <div class="pauze-exclusive__ctas">
+        <a href="{{ section.settings.cta1_url | default: '/products/pauze-cocoa?pack=3&mode=sub' }}" class="pauze-btn pauze-btn--verde pauze-btn--lg">
+          {{ section.settings.cta1 | default: 'SUSCRIBIRME · $87.900' }}
+        </a>
+        <a href="{{ section.settings.cta2_url | default: '/products/pauze-cocoa?pack=3&mode=once' }}" class="pauze-btn pauze-btn--outline-crema">
+          {{ section.settings.cta2 | default: 'COMPRAR UNA VEZ · $109.900' }}
+        </a>
+      </div>
+
+      <div class="pauze-exclusive__includes">
+        <span class="pauze-exclusive__include">✓ 3 packs Pauze Cocoa (90 noches)</span>
+        <span class="pauze-exclusive__include">✓ Frother eléctrico</span>
+        <span class="pauze-exclusive__include">✓ Guía PDF "30 noches de ritual"</span>
+        <span class="pauze-exclusive__include">✓ Envío gratis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-exclusive__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.pauze-exclusive__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--pauze-naranja);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.45rem 1rem;
+  border-radius: var(--pauze-radius-pill);
+  margin-bottom: 1.25rem;
+}
+.pauze-exclusive__title {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  color: var(--pauze-crema);
+  margin: 0 0 0.75rem;
+  line-height: 1.1;
+}
+.pauze-exclusive__sub {
+  font-size: 1.05rem;
+  color: var(--pauze-beige);
+  margin: 0 0 1.75rem;
+}
+.pauze-exclusive__price-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(246, 241, 233, 0.08);
+  border: 1px solid rgba(246, 241, 233, 0.18);
+  border-radius: 14px;
+}
+.pauze-exclusive__price-compare {
+  font-size: 1.1rem;
+  text-decoration: line-through;
+  color: var(--pauze-beige);
+  opacity: 0.7;
+}
+.pauze-exclusive__price-final {
+  font-family: var(--pauze-font-display);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 2.5rem;
+  color: var(--pauze-crema);
+  line-height: 1;
+}
+.pauze-exclusive__savings {
+  background: var(--pauze-verde);
+  color: white;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--pauze-radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.pauze-exclusive__ctas {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.85rem;
+}
+.pauze-exclusive__includes {
+  display: flex;
+  gap: 0.6rem 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--pauze-crema);
+}
+.pauze-exclusive__include { opacity: 0.92; }
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Exclusive offer banner",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Tag", "default": "OFERTA EXCLUSIVA" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Pack x3 + Frother eléctrico" },
+    { "type": "text", "id": "sub", "label": "Sub", "default": "Tu kit completo para arrancar el ritual nocturno" },
+    { "type": "text", "id": "compare_price", "label": "Precio comparado (tachado)", "default": "124.600" },
+    { "type": "text", "id": "final_price", "label": "Precio final", "default": "109.900" },
+    { "type": "text", "id": "cta1", "label": "CTA 1", "default": "SUSCRIBIRME · $87.900" },
+    { "type": "url", "id": "cta1_url", "label": "CTA 1 URL" },
+    { "type": "text", "id": "cta2", "label": "CTA 2", "default": "COMPRAR UNA VEZ · $109.900" },
+    { "type": "url", "id": "cta2_url", "label": "CTA 2 URL" }
+  ],
+  "presets": [{ "name": "Pauze: Exclusive offer banner" }]
+}
+{% endschema %}

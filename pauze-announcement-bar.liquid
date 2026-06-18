@@ -1,0 +1,117 @@
+{% comment %}
+  ============================================
+  PAUZE ANNOUNCEMENT BAR
+  ============================================
+  Banner top con código de descuento que se repite en loop.
+  Replica el "Get 15% OFF with code 15OFF" de O Positiv.
+{% endcomment %}
+
+<div class="pauze-page">
+  <div class="pauze-announcement" style="background: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
+    <div class="pauze-announcement__track" style="animation-duration: {{ section.settings.speed | default: 38 }}s;">
+      {%- for block in section.blocks -%}
+        <span class="pauze-announcement__item">
+          {%- if block.settings.icon != blank %}<span class="pauze-announcement__icon">{{ block.settings.icon }}</span>{% endif -%}
+          {{ block.settings.text }}
+        </span>
+        <span class="pauze-announcement__sep">·</span>
+      {%- endfor -%}
+      {%- comment -%} Duplicar para loop seamless {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        <span class="pauze-announcement__item">
+          {%- if block.settings.icon != blank %}<span class="pauze-announcement__icon">{{ block.settings.icon }}</span>{% endif -%}
+          {{ block.settings.text }}
+        </span>
+        <span class="pauze-announcement__sep">·</span>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+.pauze-announcement {
+  padding: 0.7rem 0;
+  overflow: hidden;
+  font-size: 0.83rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.pauze-announcement__track {
+  display: flex;
+  gap: 2.5rem;
+  width: fit-content;
+  animation: pauze-marquee linear infinite;
+  white-space: nowrap;
+  align-items: center;
+}
+.pauze-announcement__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.pauze-announcement__icon { font-size: 1rem; }
+.pauze-announcement__sep { opacity: 0.4; }
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Announcement bar",
+  "tag": "section",
+  "class": "pauze-section-announcement",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fondo",
+      "default": "#5A3E2B"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texto",
+      "default": "#F6F1E9"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Velocidad (segundos)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "default": 38
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Mensaje",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Envío gratis desde $39.900"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji (opcional)",
+          "default": "🚚"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pauze: Announcement bar",
+      "blocks": [
+        { "type": "message", "settings": { "icon": "🎉", "text": "10% OFF tu primera compra · CÓDIGO PAUZE10" } },
+        { "type": "message", "settings": { "icon": "🚚", "text": "Envío gratis desde $39.900" } },
+        { "type": "message", "settings": { "icon": "💳", "text": "12 cuotas sin interés con Mercado Pago" } },
+        { "type": "message", "settings": { "icon": "🛡️", "text": "Garantía 14 noches sin devolver el pack" } },
+        { "type": "message", "settings": { "icon": "🌙", "text": "Sin pastillas · Sin azúcar · Sin resaca" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

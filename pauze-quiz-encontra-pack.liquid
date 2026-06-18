@@ -1,0 +1,336 @@
+{% comment %}
+  PAUZE QUIZ ENCONTRÁ TU PACK — Mini-quiz interactivo 3 preguntas
+  Recomienda Pack Individual / x2 / x3 / Suscripción según respuestas
+  Levanta conversión 8-15% según O Positiv
+{% endcomment %}
+
+<section class="pauze-section pauze-section--off-white pauze-quiz" data-section-id="{{ section.id }}">
+  <div class="pauze-container">
+    <div class="pauze-quiz__container pauze-reveal">
+
+      <!-- INTRO -->
+      <div class="pauze-quiz__step pauze-quiz__step--active" data-step="intro">
+        <div class="pauze-quiz__intro">
+          <span class="pauze-eyebrow">QUIZ · 30 SEGUNDOS</span>
+          <h2 class="pauze-h2">¿Cuál es <em>tu pack</em> ideal?</h2>
+          <p class="pauze-quiz__sub">Tres preguntas rápidas y te recomendamos el pack que mejor se adapta a tu ritual.</p>
+          <button class="pauze-btn pauze-btn--verde pauze-btn--lg" onclick="pauzeQuizStart()">EMPEZAR EL QUIZ →</button>
+        </div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="pauze-quiz__step" data-step="q1">
+        <div class="pauze-quiz__progress"><span style="width: 33%;"></span></div>
+        <div class="pauze-quiz__step-num">1 de 3</div>
+        <h3 class="pauze-quiz__q">Hace cuánto te cuesta dormir bien?</h3>
+        <div class="pauze-quiz__options">
+          <button class="pauze-quiz__opt" onclick="pauzeQuizAnswer('q1','recent')">
+            <span class="pauze-quiz__opt-emoji">🆕</span>
+            <strong>Hace poco</strong>
+            <span>Menos de 1 mes</span>
+          </button>
+          <button class="pauze-quiz__opt" onclick="pauzeQuizAnswer('q1','months')">
+            <span class="pauze-quiz__opt-emoji">📅</span>
+            <strong>Hace meses</strong>
+            <span>1 a 6 meses</span>
+          </button>
+          <button class="pauze-quiz__opt" onclick="pauzeQuizAnswer('q1','chronic')">
+            <span class="pauze-quiz__opt-emoji">😴</span>
+            <strong>Hace años</strong>
+            <span>Es algo crónico</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="pauze-quiz__step" data-step="q2">
+        <div class="pauze-quiz__progress"><span style="width: 66%;"></span></div>
+        <div class="pauze-quiz__step-num">2 de 3</div>
+        <h3 class="pauze-quiz__q">¿Probaste otras soluciones?</h3>
+        <div class="pauze-quiz__options">
+          <button class="pauze-quiz__opt" onclick="pauzeQuizAnswer('q2','none')">
+            <span class="pauze-quiz__opt-emoji">❌</span>
+            <strong>Todavía no</strong>
+            <span>Esta sería mi primera vez</span>
+          </button>
+          <button class="pauze-quiz__opt" onclick="pauzeQuizAnswer('q2','some')">
+            <span class="pauze-quiz__opt-emoji">🌿</span>
+            <strong>Té / Melatonina</strong>
+            <span>Probé infusiones, melatonina, etc.</span>
+          </button>
+          <button class="pauze-quiz__opt" onclick="pauzeQuizAnswer('q2','many')">
+            <span class="pauze-quiz__opt-emoji">💊</span>
+            <strong>De todo</strong>
+            <span>Suplementos, apps, medicación</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="pauze-quiz__step" data-step="q3">
+        <div class="pauze-quiz__progress"><span style="width: 100%;"></span></div>
+        <div class="pauze-quiz__step-num">3 de 3</div>
+        <h3 class="pauze-quiz__q">¿Qué te trajo a Pauze?</h3>
+        <div class="pauze-quiz__options">
+          <button class="pauze-quiz__opt" onclick="pauzeQuizAnswer('q3','curious')">
+            <span class="pauze-quiz__opt-emoji">🔍</span>
+            <strong>Curiosidad</strong>
+            <span>Quiero probarlo sin compromiso</span>
+          </button>
+          <button class="pauze-quiz__opt" onclick="pauzeQuizAnswer('q3','ritual')">
+            <span class="pauze-quiz__opt-emoji">🌙</span>
+            <strong>Construir ritual</strong>
+            <span>Quiero algo que tome todas las noches</span>
+          </button>
+          <button class="pauze-quiz__opt" onclick="pauzeQuizAnswer('q3','results')">
+            <span class="pauze-quiz__opt-emoji">📈</span>
+            <strong>Resultados profundos</strong>
+            <span>Voy con todo, sé que necesita tiempo</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="pauze-quiz__step pauze-quiz__step--result" data-step="result">
+        <div class="pauze-quiz__result-badge">💛 TU MATCH</div>
+        <h3 class="pauze-quiz__result-pack" id="pauzeQuizResultPack">Pack x2</h3>
+        <p class="pauze-quiz__result-why" id="pauzeQuizResultWhy">La cantidad recomendada para construir el ritual y notar resultados profundos.</p>
+        <div class="pauze-quiz__result-price">
+          <span id="pauzeQuizResultPrice">$69.900</span>
+          <small id="pauzeQuizResultPer">/2 packs · 60 noches</small>
+        </div>
+        <a href="/products/pauze-cocoa" id="pauzeQuizResultCta" class="pauze-btn pauze-btn--verde pauze-btn--lg pauze-btn--block">
+          IR AL PACK RECOMENDADO →
+        </a>
+        <button class="pauze-quiz__restart" onclick="pauzeQuizRestart()">Volver a hacer el quiz</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-quiz__container {
+  max-width: 720px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 24px;
+  border: 1px solid var(--pauze-arena);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--pauze-shadow-md);
+}
+@media (min-width: 768px) {
+  .pauze-quiz__container { padding: 3.5rem 3rem; }
+}
+
+.pauze-quiz__step { display: none; }
+.pauze-quiz__step--active { display: block; animation: pauze-fade-in 0.4s ease; }
+@keyframes pauze-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pauze-quiz__intro { text-align: center; }
+.pauze-quiz__intro .pauze-h2 em { font-style: italic; color: var(--pauze-verde-dark); }
+.pauze-quiz__sub {
+  font-size: 1.05rem;
+  color: var(--pauze-gris-dark);
+  line-height: 1.55;
+  margin: 1rem 0 2rem;
+}
+
+.pauze-quiz__progress {
+  height: 6px;
+  background: var(--pauze-arena);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.pauze-quiz__progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--pauze-verde) 0%, var(--pauze-verde-bright) 100%);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.pauze-quiz__step-num {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--pauze-gris);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.pauze-quiz__q {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  color: var(--pauze-cacao);
+  line-height: 1.2;
+  margin: 0 0 2rem;
+}
+
+.pauze-quiz__options { display: flex; flex-direction: column; gap: 0.85rem; }
+.pauze-quiz__opt {
+  background: var(--pauze-off-white);
+  border: 2px solid var(--pauze-arena);
+  border-radius: 14px;
+  padding: 1.2rem 1.35rem;
+  cursor: pointer;
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.15rem 1.1rem;
+  align-items: center;
+  transition: all 0.2s ease;
+  font-family: var(--pauze-font-body);
+}
+.pauze-quiz__opt:hover {
+  border-color: var(--pauze-verde-bright);
+  background: var(--pauze-verde-pale);
+  transform: translateX(4px);
+}
+.pauze-quiz__opt-emoji {
+  font-size: 1.85rem;
+  grid-row: 1 / 3;
+}
+.pauze-quiz__opt strong {
+  font-size: 1.05rem;
+  color: var(--pauze-cacao);
+  font-weight: 700;
+}
+.pauze-quiz__opt span:not(.pauze-quiz__opt-emoji) {
+  font-size: 0.85rem;
+  color: var(--pauze-gris-dark);
+}
+
+.pauze-quiz__step--result { text-align: center; }
+.pauze-quiz__result-badge {
+  display: inline-block;
+  background: var(--pauze-dorado);
+  color: var(--pauze-cacao-dark);
+  padding: 0.4rem 1rem;
+  border-radius: var(--pauze-radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+.pauze-quiz__result-pack {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  color: var(--pauze-cacao);
+  margin: 0 0 0.5rem;
+  line-height: 1.1;
+}
+.pauze-quiz__result-why {
+  font-size: 1rem;
+  color: var(--pauze-gris-dark);
+  line-height: 1.55;
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+}
+.pauze-quiz__result-price {
+  margin-bottom: 1.5rem;
+}
+.pauze-quiz__result-price span {
+  font-family: var(--pauze-font-display);
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--pauze-verde-dark);
+  line-height: 1;
+  display: block;
+}
+.pauze-quiz__result-price small {
+  font-size: 0.85rem;
+  color: var(--pauze-gris-dark);
+}
+.pauze-quiz__restart {
+  background: transparent;
+  border: none;
+  color: var(--pauze-gris-dark);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 1.25rem;
+  font-family: var(--pauze-font-body);
+}
+</style>
+
+<script>
+(function() {
+  const answers = { q1: null, q2: null, q3: null };
+
+  function showStep(step) {
+    document.querySelectorAll('.pauze-quiz__step').forEach(s => s.classList.remove('pauze-quiz__step--active'));
+    const target = document.querySelector('[data-step="' + step + '"]');
+    if (target) target.classList.add('pauze-quiz__step--active');
+  }
+
+  window.pauzeQuizStart = function() { showStep('q1'); };
+
+  window.pauzeQuizAnswer = function(q, value) {
+    answers[q] = value;
+    if (q === 'q1') showStep('q2');
+    else if (q === 'q2') showStep('q3');
+    else if (q === 'q3') calculateResult();
+  };
+
+  window.pauzeQuizRestart = function() {
+    answers.q1 = null; answers.q2 = null; answers.q3 = null;
+    showStep('intro');
+  };
+
+  function calculateResult() {
+    // Scoring simple: cuanto más serio el problema y más comprometida la persona, más grande el pack
+    let score = 0;
+    if (answers.q1 === 'recent') score += 1;
+    if (answers.q1 === 'months') score += 2;
+    if (answers.q1 === 'chronic') score += 3;
+    if (answers.q2 === 'none') score += 1;
+    if (answers.q2 === 'some') score += 2;
+    if (answers.q2 === 'many') score += 3;
+    if (answers.q3 === 'curious') score += 1;
+    if (answers.q3 === 'ritual') score += 2;
+    if (answers.q3 === 'results') score += 3;
+
+    let pack, why, price, per, url;
+    if (score <= 4) {
+      pack = 'Pack individual'; 
+      why = 'Te recomendamos arrancar con el pack individual. Probalo 30 noches con la garantía de 14 noches: si no te funciona, te devolvemos el dinero.';
+      price = '$39.900'; per = '/pack · 30 noches';
+      url = '/products/pauze-cocoa?pack=1';
+    } else if (score <= 7) {
+      pack = 'Pack x2'; 
+      why = 'La cantidad que recomendamos para construir el ritual y notar resultados profundos. 60 noches de uso consistente.';
+      price = '$69.900'; per = '/2 packs · 60 noches';
+      url = '/products/pauze-cocoa?pack=2';
+    } else {
+      pack = 'Suscripción mensual'; 
+      why = 'Vas con todo. La suscripción te garantiza continuidad, ahorro permanente (20% off) y la Guía PDF "30 noches de ritual" gratis.';
+      price = '$31.900'; per = '/mes · 20% off + envío gratis';
+      url = '/products/suscripcion-pauze-mensual';
+    }
+
+    document.getElementById('pauzeQuizResultPack').textContent = pack;
+    document.getElementById('pauzeQuizResultWhy').textContent = why;
+    document.getElementById('pauzeQuizResultPrice').textContent = price;
+    document.getElementById('pauzeQuizResultPer').textContent = per;
+    document.getElementById('pauzeQuizResultCta').href = url;
+    showStep('result');
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Pauze: Quiz Encontrá tu pack",
+  "tag": "section",
+  "settings": [],
+  "presets": [{ "name": "Pauze: Quiz Encontrá tu pack" }]
+}
+{% endschema %}

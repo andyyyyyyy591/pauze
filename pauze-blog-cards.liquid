@@ -1,0 +1,226 @@
+{% comment %}
+  PAUZE BLOG CARDS — Réplica del bloque "The Daily Vitamin" de O Positiv
+  3 cards horizontales con foto + categoría + título + CTA "Leer más"
+{% endcomment %}
+
+<section class="pauze-section pauze-section--crema pauze-blog-cards" data-section-id="{{ section.id }}">
+  <div class="pauze-container">
+    <div class="pauze-blog-cards__header pauze-reveal">
+      <div>
+        <span class="pauze-eyebrow">{{ section.settings.eyebrow | default: 'TU RITUAL NOCTURNO' }}</span>
+        <h2 class="pauze-h2">{{ section.settings.heading | default: 'Aprendé más en el blog' }}</h2>
+      </div>
+      <a href="{{ section.settings.cta_url | default: '/blogs/ritual' }}" class="pauze-blog-cards__see-all">
+        VER TODO EL BLOG →
+      </a>
+    </div>
+
+    <div class="pauze-blog-cards__grid">
+      {% for block in section.blocks %}
+        <article class="pauze-blog-cards__card pauze-reveal" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.url | default: '#' }}" class="pauze-blog-cards__media">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% else %}
+              <div class="pauze-blog-cards__placeholder" style="background: {{ block.settings.placeholder_color | default: '#5A3E2B' }};">
+                <span class="pauze-blog-cards__placeholder-icon">{{ block.settings.emoji | default: '📖' }}</span>
+              </div>
+            {% endif %}
+            <span class="pauze-blog-cards__category">{{ block.settings.category | default: 'Ritual' }}</span>
+          </a>
+          <div class="pauze-blog-cards__body">
+            <span class="pauze-blog-cards__date">{{ block.settings.date | default: 'Junio 2026' }} · {{ block.settings.read_time | default: '5 min lectura' }}</span>
+            <h3 class="pauze-blog-cards__title">
+              <a href="{{ block.settings.url | default: '#' }}">{{ block.settings.title }}</a>
+            </h3>
+            <p class="pauze-blog-cards__excerpt">{{ block.settings.excerpt }}</p>
+            <a href="{{ block.settings.url | default: '#' }}" class="pauze-blog-cards__cta">
+              LEER MÁS →
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-blog-cards__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.pauze-blog-cards__see-all {
+  color: var(--pauze-verde-dark);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.pauze-blog-cards__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) { .pauze-blog-cards__grid { grid-template-columns: repeat(3, 1fr); } }
+
+.pauze-blog-cards__card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--pauze-arena);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.pauze-blog-cards__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--pauze-shadow-md);
+  border-color: var(--pauze-verde-bright);
+}
+
+.pauze-blog-cards__media {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  display: block;
+}
+.pauze-blog-cards__media img { width: 100%; height: 100%; object-fit: cover; }
+.pauze-blog-cards__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pauze-blog-cards__placeholder-icon { font-size: 4rem; opacity: 0.85; }
+.pauze-blog-cards__category {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--pauze-crema);
+  color: var(--pauze-cacao);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--pauze-radius-pill);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pauze-blog-cards__body {
+  padding: 1.35rem 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.pauze-blog-cards__date {
+  font-size: 0.75rem;
+  color: var(--pauze-gris-dark);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.65rem;
+}
+.pauze-blog-cards__title {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 0 0 0.85rem;
+  line-height: 1.2;
+}
+.pauze-blog-cards__title a { color: var(--pauze-cacao); text-decoration: none; }
+.pauze-blog-cards__title a:hover { color: var(--pauze-verde-dark); }
+.pauze-blog-cards__excerpt {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--pauze-off-black);
+  margin: 0 0 1rem;
+  flex-grow: 1;
+}
+.pauze-blog-cards__cta {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--pauze-verde-dark);
+  text-decoration: none;
+  align-self: flex-start;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 2px;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Blog cards",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "TU RITUAL NOCTURNO" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Aprendé más en el blog" },
+    { "type": "url", "id": "cta_url", "label": "URL CTA" }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Post",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "color", "id": "placeholder_color", "label": "Color placeholder", "default": "#5A3E2B" },
+        { "type": "text", "id": "emoji", "label": "Emoji placeholder", "default": "📖" },
+        { "type": "text", "id": "category", "label": "Categoría", "default": "Ritual" },
+        { "type": "text", "id": "date", "label": "Fecha", "default": "Junio 2026" },
+        { "type": "text", "id": "read_time", "label": "Tiempo lectura", "default": "5 min lectura" },
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "textarea", "id": "excerpt", "label": "Excerpt" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Pauze: Blog cards",
+      "blocks": [
+        {
+          "type": "post",
+          "settings": {
+            "placeholder_color": "#3D2C1F",
+            "emoji": "🌙",
+            "category": "Sueño",
+            "title": "Por qué dormimos peor a partir de los 30",
+            "excerpt": "El cortisol, las pantallas y la rumiación nocturna. Lo que la ciencia dice sobre cómo cambia tu sueño después de los 30.",
+            "url": "/blogs/ritual/por-que-dormimos-peor-a-partir-de-los-30"
+          }
+        },
+        {
+          "type": "post",
+          "settings": {
+            "placeholder_color": "#A03A2C",
+            "emoji": "💊",
+            "category": "Mito vs Ciencia",
+            "title": "El mito de la melatonina",
+            "excerpt": "Por qué la melatonina no es una pastilla mágica para dormir, y qué dice la evidencia sobre su uso real.",
+            "url": "/blogs/ritual/el-mito-de-la-melatonina"
+          }
+        },
+        {
+          "type": "post",
+          "settings": {
+            "placeholder_color": "#B85C28",
+            "emoji": "🍫",
+            "category": "Comportamiento",
+            "title": "Antojo dulce nocturno: qué es y cómo se calma",
+            "excerpt": "El alfajor de las 11 no es debilidad. Es biología. Te contamos qué está pasando y qué podés hacer.",
+            "url": "/blogs/ritual/antojo-dulce-nocturno"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

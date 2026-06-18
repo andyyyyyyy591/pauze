@@ -1,0 +1,192 @@
+{% comment %}
+  ============================================
+  PAUZE HELPS WITH — "Te ayuda con:" 4 íconos
+  ============================================
+  Replica el bloque "Supercharge Your Vagina" de O Positiv URO PDP.
+  Comunica la propuesta de valor en 4 íconos grandes con descripción.
+  
+  USAR EN: home + PDP (después del hero)
+{% endcomment %}
+
+<section class="pauze-page pauze-section pauze-helps-with" 
+         style="background: {{ section.settings.bg_color | default: '#FAFAF8' }};">
+  <div class="pauze-container">
+    <div class="pauze-section__header pauze-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="pauze-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pauze-h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="pauze-section__sub">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="pauze-helps-with__grid">
+      {%- for block in section.blocks -%}
+        <div class="pauze-helps-with__item pauze-reveal" {{ block.shopify_attributes }}>
+          <div class="pauze-helps-with__icon-wrap" style="background: {{ block.settings.icon_bg | default: '#DBE8CC' }};">
+            <span class="pauze-helps-with__icon">{{ block.settings.icon | default: '✨' }}</span>
+          </div>
+          <h3 class="pauze-helps-with__label">{{ block.settings.label }}</h3>
+          {%- if block.settings.description != blank -%}
+            <p class="pauze-helps-with__desc">{{ block.settings.description }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.cta_text != blank -%}
+      <div class="pauze-helps-with__cta-wrap">
+        <a href="{{ section.settings.cta_link }}" class="pauze-btn pauze-btn--verde">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+.pauze-helps-with__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1rem;
+}
+@media (min-width: 768px) {
+  .pauze-helps-with__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem 1.5rem;
+  }
+}
+.pauze-helps-with__item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pauze-helps-with__icon-wrap {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.1rem;
+  transition: transform 0.3s ease;
+  box-shadow: var(--pauze-shadow-sm);
+}
+.pauze-helps-with__item:hover .pauze-helps-with__icon-wrap {
+  transform: scale(1.07);
+}
+.pauze-helps-with__label {
+  font-family: var(--pauze-font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pauze-cacao);
+  margin: 0 0 0.55rem;
+  line-height: 1.2;
+}
+.pauze-helps-with__desc {
+  font-size: 0.85rem;
+  color: var(--pauze-gris-dark);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 200px;
+}
+.pauze-helps-with__cta-wrap {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Te ayuda con (4 íconos)",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fondo",
+      "default": "#FAFAF8"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Hacé tu pausa"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Tu ritual nocturno con un solo scoop"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto CTA",
+      "default": "COMPRAR AHORA"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link CTA",
+      "default": "/products/pauze-cocoa"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Ícono beneficio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji/ícono",
+          "default": "🌙"
+        },
+        {
+          "type": "color",
+          "id": "icon_bg",
+          "label": "Fondo del ícono",
+          "default": "#DBE8CC"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Etiqueta",
+          "default": "DORMIR MEJOR"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripción",
+          "default": "Activos clínicos que ayudan al sueño"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Pauze: Te ayuda con",
+      "blocks": [
+        { "type": "icon", "settings": { "icon": "🌙", "icon_bg": "#DBE8CC", "label": "DORMIR MEJOR", "description": "Activos clínicos que ayudan al sueño" } },
+        { "type": "icon", "settings": { "icon": "🧠", "icon_bg": "#F5E5C9", "label": "BAJAR LA MENTE", "description": "L-teanina + apigenina para apagar la cabeza" } },
+        { "type": "icon", "settings": { "icon": "🍫", "icon_bg": "#E6D8C8", "label": "POSTRE NOCTURNO", "description": "Sin culpa, sin azúcar agregada" } },
+        { "type": "icon", "settings": { "icon": "🌅", "icon_bg": "#FAE5D3", "label": "SIN RESACA", "description": "Te despertás claro/a, no embotado/a" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

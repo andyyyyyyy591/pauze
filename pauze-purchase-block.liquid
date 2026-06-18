@@ -1,0 +1,832 @@
+{% comment %}
+  ============================================
+  PAUZE PURCHASE BLOCK — LA SECCIÓN DE CONVERSIÓN
+  ============================================
+  Replica el bloque de compra de O Positiv URO PDP:
+  - Galería con thumbnails (izquierda)
+  - Info producto + 2-step selector + ATC + Add-On (derecha)
+  
+  USAR EN: product.pauze.json
+{% endcomment %}
+
+<section class="pauze-page pauze-purchase">
+  <div class="pauze-container pauze-purchase__inner">
+    
+    <!-- GALERÍA -->
+    <div class="pauze-purchase__gallery">
+      <div class="pauze-purchase__gallery-main" id="pauzeGalleryMain">
+        <span class="pauze-purchase__badge-fire">🔥 +340 vendidos</span>
+        {%- comment %} Imagen actual {% endcomment -%}
+        {%- if section.settings.image_1 != blank -%}
+          <img src="{{ section.settings.image_1 | image_url: width: 800 }}" 
+               alt="Pauze Cocoa" 
+               id="pauzeMainImage"
+               loading="eager">
+        {%- else -%}
+          {% render 'pauze-doypack', size: 'xlarge' %}
+        {%- endif -%}
+      </div>
+      <div class="pauze-purchase__thumbs">
+        {%- if section.settings.image_1 != blank -%}
+          <button class="pauze-purchase__thumb pauze-purchase__thumb--active" data-img="{{ section.settings.image_1 | image_url: width: 800 }}">
+            <img src="{{ section.settings.image_1 | image_url: width: 200 }}" alt="">
+          </button>
+        {%- else -%}
+          <button class="pauze-purchase__thumb pauze-purchase__thumb--active" data-placeholder="doypack">Frente</button>
+        {%- endif -%}
+        {%- if section.settings.image_2 != blank -%}
+          <button class="pauze-purchase__thumb" data-img="{{ section.settings.image_2 | image_url: width: 800 }}">
+            <img src="{{ section.settings.image_2 | image_url: width: 200 }}" alt="">
+          </button>
+        {%- else -%}
+          <button class="pauze-purchase__thumb">Lifestyle</button>
+        {%- endif -%}
+        {%- if section.settings.image_3 != blank -%}
+          <button class="pauze-purchase__thumb" data-img="{{ section.settings.image_3 | image_url: width: 800 }}">
+            <img src="{{ section.settings.image_3 | image_url: width: 200 }}" alt="">
+          </button>
+        {%- else -%}
+          <button class="pauze-purchase__thumb">Polvo</button>
+        {%- endif -%}
+        {%- if section.settings.image_4 != blank -%}
+          <button class="pauze-purchase__thumb" data-img="{{ section.settings.image_4 | image_url: width: 800 }}">
+            <img src="{{ section.settings.image_4 | image_url: width: 200 }}" alt="">
+          </button>
+        {%- else -%}
+          <button class="pauze-purchase__thumb">Nutri</button>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- INFO DEL PRODUCTO -->
+    <div class="pauze-purchase__info">
+      <span class="pauze-purchase__category">{{ section.settings.category | default: 'PM Blend · Para dormir' }}</span>
+      <h1 class="pauze-h2 pauze-purchase__title">{{ section.settings.product_title | default: 'Pauze Cocoa' }}</h1>
+      <p class="pauze-purchase__sub">{{ section.settings.subtitle | default: 'Postre nocturno con activos clínicos. L-teanina, apigenina y magnesio. Sin melatonina.' }}</p>
+      
+      <div class="pauze-purchase__rating">
+        <span class="pauze-purchase__stars">★★★★★</span>
+        <span class="pauze-purchase__rating-num">4.9</span>
+        <span class="pauze-purchase__rating-count">· {{ section.settings.reviews_count | default: '+340 reseñas verificadas' }}</span>
+      </div>
+
+      <!-- STEP 1: SELECT QUANTITY -->
+      <div class="pauze-purchase__step">
+        <p class="pauze-purchase__step-title">
+          <span class="pauze-purchase__step-num">1</span>
+          {{ section.settings.step1_title | default: 'Elegí tu pack' }}
+        </p>
+        <div class="pauze-purchase__packs">
+          <label class="pauze-purchase__pack-opt" data-price="39900" data-name="Pack individual" onclick="pauzeSelectPack(this)">
+            <div class="pauze-purchase__pack-content">
+              <div class="pauze-purchase__pack-info">
+                <span class="pauze-purchase__pack-name">1 Pack</span>
+                <span class="pauze-purchase__pack-save">SAVE 0%</span>
+              </div>
+              <div class="pauze-purchase__pack-price">
+                <span class="pauze-purchase__pack-final">$39.900</span>
+                <span class="pauze-purchase__pack-per">$1.330/noche</span>
+              </div>
+            </div>
+          </label>
+          
+          <label class="pauze-purchase__pack-opt pauze-purchase__pack-opt--selected" data-price="69900" data-name="Pack x2" onclick="pauzeSelectPack(this)">
+            <span class="pauze-purchase__pack-flag pauze-purchase__pack-flag--green">⭐ RECOMENDADO</span>
+            <div class="pauze-purchase__pack-content">
+              <div class="pauze-purchase__pack-info">
+                <span class="pauze-purchase__pack-name">2 Packs</span>
+                <span class="pauze-purchase__pack-save">SAVE 13%</span>
+              </div>
+              <div class="pauze-purchase__pack-price">
+                <span class="pauze-purchase__pack-compare">$79.800</span>
+                <span class="pauze-purchase__pack-final">$69.900</span>
+                <span class="pauze-purchase__pack-per">$1.165/noche</span>
+              </div>
+            </div>
+          </label>
+          
+          <label class="pauze-purchase__pack-opt" data-price="99900" data-name="Pack x3" onclick="pauzeSelectPack(this)">
+            <span class="pauze-purchase__pack-flag pauze-purchase__pack-flag--orange">MEJOR PRECIO</span>
+            <div class="pauze-purchase__pack-content">
+              <div class="pauze-purchase__pack-info">
+                <span class="pauze-purchase__pack-name">3 Packs</span>
+                <span class="pauze-purchase__pack-save">SAVE 17%</span>
+              </div>
+              <div class="pauze-purchase__pack-price">
+                <span class="pauze-purchase__pack-compare">$119.700</span>
+                <span class="pauze-purchase__pack-final">$99.900</span>
+                <span class="pauze-purchase__pack-per">$1.110/noche</span>
+              </div>
+            </div>
+          </label>
+        </div>
+        <p class="pauze-purchase__step-hint">
+          {{ section.settings.step1_hint | default: 'Recomendamos 2-3 meses de uso consistente para mejores resultados.' }}
+        </p>
+      </div>
+
+      <!-- STEP 2: PURCHASE TYPE -->
+      <div class="pauze-purchase__step">
+        <p class="pauze-purchase__step-title">
+          <span class="pauze-purchase__step-num">2</span>
+          {{ section.settings.step2_title | default: 'Elegí tu modalidad' }}
+        </p>
+        <div class="pauze-purchase__modes">
+          <label class="pauze-purchase__mode pauze-purchase__mode--selected" data-mode="sub" data-discount="0.8" onclick="pauzeSelectMode(this)">
+            <div class="pauze-purchase__mode-radio"></div>
+            <div class="pauze-purchase__mode-content">
+              <div class="pauze-purchase__mode-header">
+                <span class="pauze-purchase__mode-name">Suscripción mensual</span>
+                <span class="pauze-purchase__mode-tag">-20%</span>
+              </div>
+              <ul class="pauze-purchase__mode-perks">
+                <li>✓ Envío gratis siempre</li>
+                <li>✓ Cancelás cuando quieras</li>
+                <li>🎁 Guía PDF "30 noches de ritual" GRATIS</li>
+              </ul>
+            </div>
+          </label>
+          
+          <label class="pauze-purchase__mode" data-mode="once" data-discount="1" onclick="pauzeSelectMode(this)">
+            <div class="pauze-purchase__mode-radio"></div>
+            <div class="pauze-purchase__mode-content">
+              <div class="pauze-purchase__mode-header">
+                <span class="pauze-purchase__mode-name">Compra única</span>
+              </div>
+              <div class="pauze-purchase__mode-meta">Pagás una sola vez · Sin compromiso</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- ADD ON UPSELL -->
+      <div class="pauze-purchase__addon">
+        <p class="pauze-purchase__addon-title">Sumá a tu pack:</p>
+        <label class="pauze-purchase__addon-card" onclick="pauzeToggleAddon(this)">
+          <div class="pauze-purchase__addon-checkbox">
+            <input type="checkbox" id="pauzeAddonFrother" hidden>
+            <span class="pauze-purchase__addon-check"></span>
+          </div>
+          <div class="pauze-purchase__addon-icon">🥄</div>
+          <div class="pauze-purchase__addon-info">
+            <strong>Frother eléctrico</strong>
+            <span>Hace una espuma perfecta en 30 segundos</span>
+          </div>
+          <div class="pauze-purchase__addon-price">
+            <small>$8.900</small>
+            <strong>$5.900</strong>
+          </div>
+        </label>
+      </div>
+
+      <!-- ADD TO CART -->
+      <button class="pauze-purchase__atc" id="pauzeAtcBtn">
+        <span>AGREGAR AL CARRITO</span>
+        <span class="pauze-purchase__atc-price" id="pauzeAtcPrice">$55.920</span>
+      </button>
+      
+      <p class="pauze-purchase__atc-meta">
+        💳 12 cuotas sin interés con Mercado Pago<br>
+        ✓ 96% lo recomienda · Menos de 3% pide devolución
+      </p>
+
+      <!-- USPs CHICOS -->
+      <div class="pauze-purchase__usps">
+        <div class="pauze-purchase__usp">
+          <span class="pauze-purchase__usp-icon">🛡️</span>
+          <span class="pauze-purchase__usp-text">Garantía<br>14 noches</span>
+        </div>
+        <div class="pauze-purchase__usp">
+          <span class="pauze-purchase__usp-icon">📦</span>
+          <span class="pauze-purchase__usp-text">Entrega<br>7-15 días</span>
+        </div>
+        <div class="pauze-purchase__usp">
+          <span class="pauze-purchase__usp-icon">🇦🇷</span>
+          <span class="pauze-purchase__usp-text">Hecho<br>en Argentina</span>
+        </div>
+      </div>
+
+      <!-- BADGES PAGO -->
+      <div class="pauze-purchase__payment">
+        <span>MERCADO PAGO</span>
+        <span>VISA</span>
+        <span>MASTER</span>
+        <span>AMEX</span>
+        <span>DINERS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-purchase {
+  padding: 2rem 0 4rem;
+  background: var(--pauze-off-white);
+}
+@media (min-width: 768px) {
+  .pauze-purchase { padding: 3rem 0 5rem; }
+}
+.pauze-purchase__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 900px) {
+  .pauze-purchase__inner {
+    grid-template-columns: 1.05fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+/* GALERÍA */
+.pauze-purchase__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+@media (min-width: 900px) {
+  .pauze-purchase__gallery { position: sticky; top: 100px; }
+}
+.pauze-purchase__gallery-main {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--pauze-arena) 0%, var(--pauze-beige) 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+}
+.pauze-purchase__gallery-main img { max-width: 90%; max-height: 90%; }
+.pauze-purchase__badge-fire {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--pauze-naranja);
+  color: white;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--pauze-radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: var(--pauze-shadow-sm);
+  z-index: 2;
+}
+.pauze-purchase__thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+.pauze-purchase__thumb {
+  aspect-ratio: 1;
+  background: var(--pauze-arena);
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--pauze-cacao-light);
+  text-align: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--pauze-font-body);
+  font-weight: 600;
+}
+.pauze-purchase__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.pauze-purchase__thumb--active { border-color: var(--pauze-cacao); }
+.pauze-purchase__thumb:hover { border-color: var(--pauze-verde); }
+
+/* INFO */
+.pauze-purchase__info { display: flex; flex-direction: column; }
+.pauze-purchase__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pauze-verde-dark);
+  margin-bottom: 0.75rem;
+}
+.pauze-purchase__category::before {
+  content: '●';
+  color: var(--pauze-verde);
+}
+.pauze-purchase__title {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.85rem, 4vw, 2.6rem);
+}
+.pauze-purchase__sub {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--pauze-off-black);
+  margin: 0 0 1rem;
+  opacity: 0.85;
+}
+.pauze-purchase__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+.pauze-purchase__stars { color: var(--pauze-dorado); letter-spacing: 0.1em; }
+.pauze-purchase__rating-num { font-weight: 700; color: var(--pauze-cacao); }
+.pauze-purchase__rating-count { font-size: 0.82rem; color: var(--pauze-gris-dark); }
+
+/* STEPS */
+.pauze-purchase__step { margin-bottom: 1.5rem; }
+.pauze-purchase__step-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--pauze-font-body);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--pauze-cacao);
+  margin: 0 0 0.85rem;
+}
+.pauze-purchase__step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--pauze-cacao);
+  color: var(--pauze-crema);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.pauze-purchase__step-hint {
+  font-size: 0.78rem;
+  color: var(--pauze-gris-dark);
+  margin-top: 0.65rem;
+  font-style: italic;
+}
+
+/* PACKS */
+.pauze-purchase__packs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+.pauze-purchase__pack-opt {
+  position: relative;
+  background: white;
+  border: 2px solid var(--pauze-arena);
+  border-radius: 12px;
+  padding: 1rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.pauze-purchase__pack-opt:hover { border-color: var(--pauze-verde-bright); }
+.pauze-purchase__pack-opt--selected {
+  border-color: var(--pauze-verde);
+  background: var(--pauze-verde-pale);
+  box-shadow: 0 0 0 3px rgba(59, 122, 44, 0.1);
+}
+.pauze-purchase__pack-flag {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--pauze-radius-pill);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: white;
+}
+.pauze-purchase__pack-flag--green { background: var(--pauze-verde); }
+.pauze-purchase__pack-flag--orange { background: var(--pauze-naranja); }
+.pauze-purchase__pack-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.pauze-purchase__pack-name {
+  font-weight: 700;
+  color: var(--pauze-cacao);
+  font-size: 0.95rem;
+}
+.pauze-purchase__pack-save {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--pauze-verde-dark);
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+.pauze-purchase__pack-price {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.pauze-purchase__pack-compare {
+  font-size: 0.72rem;
+  text-decoration: line-through;
+  color: var(--pauze-gris);
+}
+.pauze-purchase__pack-final {
+  font-family: var(--pauze-font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--pauze-cacao);
+}
+.pauze-purchase__pack-per {
+  font-size: 0.65rem;
+  color: var(--pauze-gris-dark);
+  margin-top: 0.15rem;
+}
+
+/* MODES (subscribe vs once) */
+.pauze-purchase__modes { display: flex; flex-direction: column; gap: 0.65rem; }
+.pauze-purchase__mode {
+  border: 2px solid var(--pauze-arena);
+  border-radius: 12px;
+  padding: 1.1rem 1.15rem;
+  cursor: pointer;
+  background: white;
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  transition: all 0.15s ease;
+}
+.pauze-purchase__mode:hover { border-color: var(--pauze-verde-bright); }
+.pauze-purchase__mode--selected {
+  border-color: var(--pauze-verde);
+  background: var(--pauze-verde-pale);
+  box-shadow: 0 0 0 3px rgba(59, 122, 44, 0.1);
+}
+.pauze-purchase__mode-radio {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--pauze-arena);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  transition: all 0.2s ease;
+}
+.pauze-purchase__mode--selected .pauze-purchase__mode-radio {
+  border-color: var(--pauze-verde);
+  background: var(--pauze-verde);
+}
+.pauze-purchase__mode--selected .pauze-purchase__mode-radio::after {
+  content: '✓';
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.pauze-purchase__mode-content { flex-grow: 1; }
+.pauze-purchase__mode-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.35rem;
+}
+.pauze-purchase__mode-name {
+  font-weight: 700;
+  color: var(--pauze-cacao);
+  font-size: 0.98rem;
+}
+.pauze-purchase__mode-tag {
+  background: var(--pauze-verde);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.pauze-purchase__mode-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: var(--pauze-off-black);
+}
+.pauze-purchase__mode-meta {
+  font-size: 0.83rem;
+  color: var(--pauze-gris-dark);
+}
+
+/* ADD-ON */
+.pauze-purchase__addon {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--pauze-crema-warm);
+  border-radius: 12px;
+  border: 1.5px dashed var(--pauze-naranja);
+}
+.pauze-purchase__addon-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pauze-naranja-dark);
+  margin: 0 0 0.75rem;
+}
+.pauze-purchase__addon-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: white;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.pauze-purchase__addon-checkbox { flex-shrink: 0; }
+.pauze-purchase__addon-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  border: 2px solid var(--pauze-arena);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.pauze-purchase__addon-card.is-checked .pauze-purchase__addon-check {
+  background: var(--pauze-naranja);
+  border-color: var(--pauze-naranja);
+  color: white;
+}
+.pauze-purchase__addon-card.is-checked .pauze-purchase__addon-check::after {
+  content: '✓';
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.pauze-purchase__addon-icon { font-size: 1.6rem; }
+.pauze-purchase__addon-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.pauze-purchase__addon-info strong {
+  font-size: 0.92rem;
+  color: var(--pauze-cacao);
+}
+.pauze-purchase__addon-info span {
+  font-size: 0.78rem;
+  color: var(--pauze-gris-dark);
+}
+.pauze-purchase__addon-price { text-align: right; }
+.pauze-purchase__addon-price small {
+  display: block;
+  font-size: 0.72rem;
+  text-decoration: line-through;
+  color: var(--pauze-gris);
+}
+.pauze-purchase__addon-price strong {
+  color: var(--pauze-naranja-dark);
+  font-size: 1.05rem;
+}
+
+/* ATC */
+.pauze-purchase__atc {
+  background: var(--pauze-verde);
+  color: white;
+  width: 100%;
+  padding: 1.3rem;
+  font-family: var(--pauze-font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  margin: 1.5rem 0 0.85rem;
+  transition: all 0.2s;
+  box-shadow: var(--pauze-shadow-cta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+.pauze-purchase__atc:hover {
+  background: var(--pauze-verde-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(59, 122, 44, 0.55);
+}
+.pauze-purchase__atc-price { opacity: 0.92; font-weight: 600; }
+.pauze-purchase__atc-meta {
+  text-align: center;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--pauze-gris-dark);
+  margin: 0.85rem 0 1.5rem;
+}
+
+/* USPs */
+.pauze-purchase__usps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.pauze-purchase__usp {
+  background: white;
+  border: 1px solid var(--pauze-arena);
+  border-radius: 10px;
+  padding: 0.85rem 0.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+.pauze-purchase__usp-icon { font-size: 1.45rem; }
+.pauze-purchase__usp-text {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--pauze-cacao);
+  line-height: 1.25;
+}
+
+/* PAYMENT */
+.pauze-purchase__payment {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid var(--pauze-arena);
+}
+.pauze-purchase__payment span {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--pauze-gris-dark);
+  background: var(--pauze-off-white);
+  padding: 0.35rem 0.55rem;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--pauze-arena);
+}
+</style>
+
+<script>
+// Estado global del PDP
+window.pauzePDP = {
+  pack: 'Pack x2',
+  packPrice: 69900,
+  mode: 'sub',
+  modeDiscount: 0.8,
+  addon: false,
+  addonPrice: 5900
+};
+
+function pauzeUpdateAtc() {
+  const subtotal = window.pauzePDP.packPrice * window.pauzePDP.modeDiscount;
+  const total = subtotal + (window.pauzePDP.addon ? window.pauzePDP.addonPrice : 0);
+  const formatted = '$' + Math.round(total).toLocaleString('es-AR');
+  const priceEl = document.getElementById('pauzeAtcPrice');
+  if (priceEl) priceEl.textContent = formatted;
+}
+
+function pauzeSelectPack(el) {
+  document.querySelectorAll('.pauze-purchase__pack-opt').forEach(p => p.classList.remove('pauze-purchase__pack-opt--selected'));
+  el.classList.add('pauze-purchase__pack-opt--selected');
+  window.pauzePDP.pack = el.dataset.name;
+  window.pauzePDP.packPrice = parseInt(el.dataset.price);
+  pauzeUpdateAtc();
+}
+
+function pauzeSelectMode(el) {
+  document.querySelectorAll('.pauze-purchase__mode').forEach(m => m.classList.remove('pauze-purchase__mode--selected'));
+  el.classList.add('pauze-purchase__mode--selected');
+  window.pauzePDP.mode = el.dataset.mode;
+  window.pauzePDP.modeDiscount = parseFloat(el.dataset.discount);
+  pauzeUpdateAtc();
+}
+
+function pauzeToggleAddon(el) {
+  el.classList.toggle('is-checked');
+  const cb = el.querySelector('input[type=checkbox]');
+  cb.checked = el.classList.contains('is-checked');
+  window.pauzePDP.addon = cb.checked;
+  pauzeUpdateAtc();
+}
+
+// Thumbnails
+document.addEventListener('DOMContentLoaded', function() {
+  const thumbs = document.querySelectorAll('.pauze-purchase__thumb');
+  const mainImg = document.getElementById('pauzeMainImage');
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', function() {
+      thumbs.forEach(t => t.classList.remove('pauze-purchase__thumb--active'));
+      this.classList.add('pauze-purchase__thumb--active');
+      const newSrc = this.dataset.img;
+      if (newSrc && mainImg) { mainImg.src = newSrc; }
+    });
+  });
+  pauzeUpdateAtc();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Pauze: Purchase block PDP",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Producto"
+    },
+    {
+      "type": "text",
+      "id": "category",
+      "label": "Categoría/eyebrow",
+      "default": "PM Blend · Para dormir"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Título del producto",
+      "default": "Pauze Cocoa"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Postre nocturno con activos clínicos. L-teanina, apigenina y magnesio. Sin melatonina."
+    },
+    {
+      "type": "text",
+      "id": "reviews_count",
+      "label": "Texto cantidad reseñas",
+      "default": "+340 reseñas verificadas"
+    },
+    {
+      "type": "header",
+      "content": "Step 1: Quantity"
+    },
+    {
+      "type": "text",
+      "id": "step1_title",
+      "label": "Título step 1",
+      "default": "Elegí tu pack"
+    },
+    {
+      "type": "text",
+      "id": "step1_hint",
+      "label": "Texto hint",
+      "default": "Recomendamos 2-3 meses de uso consistente para mejores resultados."
+    },
+    {
+      "type": "header",
+      "content": "Step 2: Purchase type"
+    },
+    {
+      "type": "text",
+      "id": "step2_title",
+      "label": "Título step 2",
+      "default": "Elegí tu modalidad"
+    },
+    {
+      "type": "header",
+      "content": "Imágenes (subir 4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Imagen 1 (doypack frente)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Imagen 2 (lifestyle)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Imagen 3 (polvo)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Imagen 4 (info nutri)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pauze: Purchase block PDP"
+    }
+  ]
+}
+{% endschema %}

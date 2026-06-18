@@ -1,0 +1,305 @@
+{% comment %}
+  ============================================
+  PAUZE INGREDIENTS — Activos con dosis
+  ============================================
+  Replica el bloque "Key Ingredients" de O Positiv URO PDP.
+  3 cards con activo + ilustración + dosis + expandible.
+  
+  USAR EN: PDP (después de Science Behind)
+{% endcomment %}
+
+<section class="pauze-page pauze-section pauze-section--off-white pauze-ingredients">
+  <div class="pauze-container">
+    <div class="pauze-section__header pauze-reveal">
+      <span class="pauze-eyebrow">{{ section.settings.eyebrow | default: 'Activos clínicos' }}</span>
+      <h2 class="pauze-h2">{{ section.settings.heading | default: 'Cantidades honestas, no proprietary blend' }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="pauze-section__sub">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="pauze-ingredients__grid">
+      {%- for block in section.blocks -%}
+        <details class="pauze-ingredients__card pauze-reveal" {{ block.shopify_attributes }}>
+          <summary class="pauze-ingredients__summary">
+            <div class="pauze-ingredients__icon" style="background: {{ block.settings.icon_bg | default: '#DBE8CC' }};">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.name }}">
+              {%- else -%}
+                <span>{{ block.settings.icon | default: '🌿' }}</span>
+              {%- endif -%}
+            </div>
+            <div class="pauze-ingredients__main">
+              <span class="pauze-ingredients__dose">{{ block.settings.dose }}</span>
+              <h3 class="pauze-ingredients__name">{{ block.settings.name }}</h3>
+              <span class="pauze-ingredients__tag">{{ block.settings.tag }}</span>
+            </div>
+            <span class="pauze-ingredients__toggle">+</span>
+          </summary>
+          <div class="pauze-ingredients__detail">
+            <p>{{ block.settings.description }}</p>
+            {%- if block.settings.evidence != blank -%}
+              <div class="pauze-ingredients__evidence">
+                <strong>📄 Evidencia:</strong> {{ block.settings.evidence }}
+              </div>
+            {%- endif -%}
+          </div>
+        </details>
+      {%- endfor -%}
+    </div>
+
+    <p class="pauze-ingredients__disclaimer">
+      {{ section.settings.disclaimer | default: 'Suplemento dietario · No es un medicamento · Suplementa dietas insuficientes · No utilizar durante embarazo, lactancia o en menores de 18 años.' }}
+    </p>
+  </div>
+</section>
+
+<style>
+.pauze-ingredients__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.pauze-ingredients__card {
+  background: white;
+  border: 2px solid var(--pauze-arena);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.pauze-ingredients__card:hover {
+  border-color: var(--pauze-verde-bright);
+  transform: translateY(-2px);
+  box-shadow: var(--pauze-shadow-md);
+}
+.pauze-ingredients__card[open] {
+  border-color: var(--pauze-verde);
+  box-shadow: var(--pauze-shadow-md);
+}
+.pauze-ingredients__summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  cursor: pointer;
+}
+.pauze-ingredients__summary::-webkit-details-marker { display: none; }
+.pauze-ingredients__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+.pauze-ingredients__icon img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+.pauze-ingredients__main { flex-grow: 1; }
+.pauze-ingredients__dose {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: var(--pauze-verde-dark);
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+.pauze-ingredients__name {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.45rem;
+  color: var(--pauze-cacao);
+  margin: 0 0 0.2rem;
+}
+.pauze-ingredients__tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--pauze-dorado-dark);
+  letter-spacing: 0.04em;
+}
+.pauze-ingredients__toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--pauze-verde);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+.pauze-ingredients__card[open] .pauze-ingredients__toggle {
+  transform: rotate(45deg);
+}
+.pauze-ingredients__detail {
+  padding: 0 1.25rem 1.5rem 7.25rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--pauze-off-black);
+}
+@media (max-width: 640px) {
+  .pauze-ingredients__detail { padding: 0 1.25rem 1.5rem; }
+}
+.pauze-ingredients__detail p { margin: 0; }
+.pauze-ingredients__evidence {
+  margin-top: 0.85rem;
+  padding: 0.7rem 0.95rem;
+  background: var(--pauze-verde-pale);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--pauze-verde-deep);
+}
+.pauze-ingredients__disclaimer {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--pauze-gris-dark);
+  font-style: italic;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.55;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Ingredientes",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Activos clínicos"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Cantidades honestas, no proprietary blend"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "Las cantidades de cada activo en el frente del pack. Sin blends ni números mágicos escondidos."
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer",
+      "label": "Disclaimer ANMAT",
+      "default": "Suplemento dietario · No es un medicamento · Suplementa dietas insuficientes · No utilizar durante embarazo, lactancia o en menores de 18 años."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingrediente",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Ilustración"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji fallback",
+          "default": "🌿"
+        },
+        {
+          "type": "color",
+          "id": "icon_bg",
+          "label": "Fondo del icon",
+          "default": "#DBE8CC"
+        },
+        {
+          "type": "text",
+          "id": "dose",
+          "label": "Dosis",
+          "default": "200mg"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre",
+          "default": "L-teanina"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag",
+          "default": "Aminoácido del té verde"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripción",
+          "default": "La L-teanina activa ondas alpha en el cerebro — el patrón asociado a la relajación atenta. Te calma sin sedarte. La dosis terapéutica empieza en 200mg."
+        },
+        {
+          "type": "textarea",
+          "id": "evidence",
+          "label": "Evidencia/estudio",
+          "default": "Nobre et al., 2008. L-theanine, a natural constituent in tea, and its effect on mental state. Asia Pacific Journal of Clinical Nutrition."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Pauze: Ingredientes",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "icon": "🍃",
+            "dose": "200mg",
+            "name": "L-teanina",
+            "tag": "Aminoácido del té verde",
+            "description": "La L-teanina activa ondas alpha en el cerebro — el patrón asociado a la relajación atenta. Te calma sin sedarte. La dosis terapéutica empieza en 200mg.",
+            "evidence": "Nobre et al., 2008. Asia Pacific Journal of Clinical Nutrition."
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "icon": "🌼",
+            "dose": "50mg",
+            "name": "Apigenina",
+            "tag": "Extracto de manzanilla",
+            "description": "La apigenina se une a los receptores GABA de tu cerebro — los mismos que activan los ansiolíticos pero de forma suave y natural. Es el ingrediente activo de la manzanilla, concentrado.",
+            "evidence": "Salehi et al., 2019. The therapeutic potential of apigenin. Phytomedicine."
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "icon": "💎",
+            "dose": "300mg",
+            "name": "Magnesio glicinato",
+            "tag": "La forma más absorbible",
+            "description": "El magnesio glicinato es la forma con mejor absorción y menos efecto laxante. Relaja la musculatura, regula el cortisol y participa en la síntesis de melatonina natural en tu cuerpo.",
+            "evidence": "Abbasi et al., 2012. The effect of magnesium supplementation on primary insomnia in elderly. JRMS."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

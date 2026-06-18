@@ -1,0 +1,109 @@
+{% comment %}
+  PAUZE PRESS LOGOS — Versión HONESTA del bloque "press" de O Positiv
+  En vez de inventar logos de Clarín/La Nación/Forbes (publicidad engañosa):
+  → mostramos "Próximamente en medios" con placeholder genéricos.
+  Cuando salgas en prensa real, reemplazás los placeholders por logos reales.
+{% endcomment %}
+
+<section class="pauze-section pauze-section--crema pauze-press" data-section-id="{{ section.id }}">
+  <div class="pauze-container">
+    <div class="pauze-press__inner pauze-reveal">
+      <p class="pauze-press__eyebrow">{{ section.settings.eyebrow | default: 'Próximamente en medios' }}</p>
+      <div class="pauze-press__logos">
+        {% for block in section.blocks %}
+          <div class="pauze-press__logo" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 300 }}" alt="{{ block.settings.name }}" loading="lazy">
+            {% else %}
+              <span class="pauze-press__placeholder">{{ block.settings.name | default: 'Tu medio' }}</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      {% if section.settings.note != blank %}
+        <p class="pauze-press__note">{{ section.settings.note }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-press__inner { text-align: center; max-width: 1100px; margin: 0 auto; }
+.pauze-press__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--pauze-gris-dark);
+  margin: 0 0 2rem;
+}
+.pauze-press__logos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+}
+@media (min-width: 768px) {
+  .pauze-press__logos { grid-template-columns: repeat(5, 1fr); gap: 3rem; }
+}
+.pauze-press__logo {
+  opacity: 0.5;
+  filter: grayscale(1);
+  transition: all 0.3s ease;
+  max-height: 50px;
+}
+.pauze-press__logo:hover { opacity: 0.9; filter: grayscale(0); }
+.pauze-press__logo img { max-height: 50px; width: auto; max-width: 140px; }
+.pauze-press__placeholder {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--pauze-cacao-light);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 1rem;
+  border: 1.5px dashed var(--pauze-arena);
+  border-radius: 10px;
+}
+.pauze-press__note {
+  font-size: 0.78rem;
+  color: var(--pauze-gris);
+  font-style: italic;
+  margin-top: 2rem;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Press logos",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Próximamente en medios" },
+    { "type": "textarea", "id": "note", "label": "Nota" }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo prensa",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo" },
+        { "type": "text", "id": "name", "label": "Nombre fallback", "default": "Tu medio" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Pauze: Press logos",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "Tu medio" } },
+        { "type": "logo", "settings": { "name": "Tu medio" } },
+        { "type": "logo", "settings": { "name": "Tu medio" } },
+        { "type": "logo", "settings": { "name": "Tu medio" } },
+        { "type": "logo", "settings": { "name": "Tu medio" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

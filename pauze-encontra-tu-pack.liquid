@@ -1,0 +1,263 @@
+{% comment %}
+  PAUZE ENCONTRÁ TU PACK — Réplica "Shop by Health Need" de O Positiv
+  Grid de 3 cards con los packs (individual / x2 / x3) + suscripción destacada
+{% endcomment %}
+
+<section class="pauze-section pauze-section--off-white pauze-encontra-pack" data-section-id="{{ section.id }}">
+  <div class="pauze-container">
+    <div class="pauze-section__header pauze-reveal">
+      <span class="pauze-eyebrow">{{ section.settings.eyebrow | default: 'ENCONTRÁ TU PACK' }}</span>
+      <h2 class="pauze-h2">{{ section.settings.heading | default: 'Tres formas de empezar' }}</h2>
+      <p class="pauze-section__sub">{{ section.settings.sub | default: 'Recomendamos 2-3 meses de uso consistente para resultados profundos.' }}</p>
+    </div>
+
+    <div class="pauze-encontra-pack__grid">
+      {% for block in section.blocks %}
+        <article class="pauze-encontra-pack__card pauze-reveal {% if block.settings.featured %}pauze-encontra-pack__card--featured{% endif %}" {{ block.shopify_attributes }}>
+          {% if block.settings.tag != blank %}
+            <div class="pauze-encontra-pack__tag" style="background: {{ block.settings.tag_color | default: '#3B7A2C' }};">
+              {{ block.settings.tag }}
+            </div>
+          {% endif %}
+
+          <div class="pauze-encontra-pack__visual">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% else %}
+              <div class="pauze-encontra-pack__placeholder">
+                {% for i in (1..forloop.index) %}{% if forloop.index < 4 %}🍫{% endif %}{% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="pauze-encontra-pack__body">
+            <span class="pauze-encontra-pack__sub">{{ block.settings.subtitle }}</span>
+            <h3 class="pauze-encontra-pack__title">{{ block.settings.title }}</h3>
+            <p class="pauze-encontra-pack__desc">{{ block.settings.desc }}</p>
+
+            <div class="pauze-encontra-pack__price-row">
+              {% if block.settings.compare_price != blank %}
+                <span class="pauze-encontra-pack__compare">${{ block.settings.compare_price }}</span>
+              {% endif %}
+              <span class="pauze-encontra-pack__price">${{ block.settings.price }}</span>
+              {% if block.settings.price_per != blank %}
+                <span class="pauze-encontra-pack__per">{{ block.settings.price_per }}</span>
+              {% endif %}
+            </div>
+
+            {% if block.settings.savings != blank %}
+              <div class="pauze-encontra-pack__save">{{ block.settings.savings }}</div>
+            {% endif %}
+
+            <a href="{{ block.settings.url | default: '/products/pauze-cocoa' }}" class="pauze-btn pauze-btn--verde pauze-btn--block">
+              {{ block.settings.cta | default: 'ELEGIR ESTE PACK →' }}
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-encontra-pack__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .pauze-encontra-pack__grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+}
+
+.pauze-encontra-pack__card {
+  background: white;
+  border-radius: 20px;
+  border: 2px solid var(--pauze-arena);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.pauze-encontra-pack__card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--pauze-shadow-lg);
+  border-color: var(--pauze-verde-bright);
+}
+.pauze-encontra-pack__card--featured {
+  border-color: var(--pauze-verde);
+  border-width: 3px;
+  transform: scale(1.02);
+}
+@media (max-width: 767px) {
+  .pauze-encontra-pack__card--featured { transform: none; }
+}
+
+.pauze-encontra-pack__tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--pauze-radius-pill);
+  z-index: 2;
+}
+
+.pauze-encontra-pack__visual {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--pauze-arena), var(--pauze-beige));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.pauze-encontra-pack__visual img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.pauze-encontra-pack__placeholder {
+  font-size: 4rem;
+  letter-spacing: 0.3em;
+}
+
+.pauze-encontra-pack__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.pauze-encontra-pack__sub {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pauze-verde-dark);
+  margin-bottom: 0.4rem;
+}
+.pauze-encontra-pack__title {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.65rem;
+  color: var(--pauze-cacao);
+  margin: 0 0 0.65rem;
+  line-height: 1.15;
+}
+.pauze-encontra-pack__desc {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--pauze-gris-dark);
+  margin: 0 0 1.25rem;
+  flex-grow: 1;
+}
+.pauze-encontra-pack__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+.pauze-encontra-pack__compare {
+  text-decoration: line-through;
+  color: var(--pauze-gris);
+  font-size: 0.95rem;
+}
+.pauze-encontra-pack__price {
+  font-family: var(--pauze-font-display);
+  font-weight: 700;
+  font-size: 1.85rem;
+  color: var(--pauze-cacao);
+  line-height: 1;
+}
+.pauze-encontra-pack__per { font-size: 0.78rem; color: var(--pauze-gris-dark); }
+.pauze-encontra-pack__save {
+  color: var(--pauze-verde-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Encontrá tu pack",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "ENCONTRÁ TU PACK" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Tres formas de empezar" },
+    { "type": "textarea", "id": "sub", "label": "Sub", "default": "Recomendamos 2-3 meses de uso consistente para resultados profundos." }
+  ],
+  "blocks": [
+    {
+      "type": "pack",
+      "name": "Pack",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "" },
+        { "type": "color", "id": "tag_color", "label": "Color tag", "default": "#3B7A2C" },
+        { "type": "checkbox", "id": "featured", "label": "Destacado (borde verde + scale)", "default": false },
+        { "type": "image_picker", "id": "image", "label": "Imagen producto" },
+        { "type": "text", "id": "subtitle", "label": "Sub (uppercase)", "default": "PROBAR" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Pack individual" },
+        { "type": "textarea", "id": "desc", "label": "Descripción" },
+        { "type": "text", "id": "compare_price", "label": "Precio tachado" },
+        { "type": "text", "id": "price", "label": "Precio final", "default": "39.900" },
+        { "type": "text", "id": "price_per", "label": "Precio por unidad", "default": "/pack" },
+        { "type": "text", "id": "savings", "label": "Ahorro" },
+        { "type": "text", "id": "cta", "label": "CTA", "default": "ELEGIR ESTE PACK →" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Pauze: Encontrá tu pack",
+      "blocks": [
+        {
+          "type": "pack",
+          "settings": {
+            "subtitle": "PROBAR",
+            "title": "Pack individual",
+            "desc": "30 noches de pausa. Probalo sin compromiso con la garantía de 14 noches.",
+            "price": "39.900",
+            "price_per": "/pack",
+            "cta": "ELEGIR INDIVIDUAL →"
+          }
+        },
+        {
+          "type": "pack",
+          "settings": {
+            "tag": "MÁS ELEGIDO",
+            "tag_color": "#3B7A2C",
+            "featured": true,
+            "subtitle": "RECOMENDADO",
+            "title": "Pack x2",
+            "desc": "60 noches. La cantidad que recomendamos para que se note la diferencia.",
+            "compare_price": "79.800",
+            "price": "69.900",
+            "price_per": "/2 packs",
+            "savings": "Ahorrás $9.900 + Guía PDF gratis",
+            "cta": "ELEGIR PACK X2 →"
+          }
+        },
+        {
+          "type": "pack",
+          "settings": {
+            "tag": "MEJOR PRECIO",
+            "tag_color": "#E07A3F",
+            "subtitle": "FAMILIA / SUSCRIPCIÓN",
+            "title": "Pack x3 o Suscripción",
+            "desc": "90 noches o 1 pack/mes con 20% off siempre. Más Frother de regalo.",
+            "compare_price": "119.700",
+            "price": "99.900",
+            "price_per": "/3 packs",
+            "savings": "Ahorrás $19.800 + Frother + Guía",
+            "cta": "ELEGIR PACK X3 →"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,143 @@
+{% comment %}
+  PAUZE BUNDLE BANNER — Réplica del banner "Bundle & Save up to $40" de O Positiv
+  CTA grande tipo full-width sobre fondo cacao oscuro con detalle dorado
+{% endcomment %}
+
+<section class="pauze-section pauze-bundle-banner" 
+         style="background: linear-gradient(135deg, {{ section.settings.bg_from | default: '#2A5C20' }} 0%, {{ section.settings.bg_to | default: '#3B7A2C' }} 100%);"
+         data-section-id="{{ section.id }}">
+  <div class="pauze-bundle-banner__glow"></div>
+  <div class="pauze-container">
+    <div class="pauze-bundle-banner__inner pauze-reveal">
+      <div class="pauze-bundle-banner__content">
+        <span class="pauze-bundle-banner__tag">{{ section.settings.tag | default: 'SUSCRIPCIÓN MENSUAL' }}</span>
+        <h2 class="pauze-bundle-banner__title">
+          {{ section.settings.title | default: 'Suscribite y ahorrá hasta' }}
+          <span class="pauze-bundle-banner__highlight">{{ section.settings.highlight | default: '20% siempre' }}</span>
+        </h2>
+        <p class="pauze-bundle-banner__sub">{{ section.settings.sub | default: 'Envío gratis · Guía PDF "30 noches de ritual" gratis · Cancelás cuando quieras' }}</p>
+        <a href="{{ section.settings.cta_url | default: '/products/suscripcion-pauze-mensual' }}" class="pauze-btn pauze-btn--crema pauze-btn--lg">
+          {{ section.settings.cta | default: 'SUSCRIBIRME · $31.900/MES' }} →
+        </a>
+      </div>
+      <div class="pauze-bundle-banner__visual">
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | image_url: width: 800 }}" alt="Pauze Suscripción" loading="lazy">
+        {% else %}
+          <div class="pauze-bundle-banner__placeholder">
+            <span class="pauze-bundle-banner__emoji">📦</span>
+            <span class="pauze-bundle-banner__placeholder-text">[Pack Pauze + accesorios]</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-bundle-banner {
+  position: relative;
+  color: var(--pauze-crema);
+  overflow: hidden;
+}
+.pauze-bundle-banner__glow {
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201, 149, 78, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pauze-bundle-banner__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media (min-width: 900px) {
+  .pauze-bundle-banner__inner { grid-template-columns: 1.2fr 1fr; gap: 4rem; }
+}
+
+.pauze-bundle-banner__tag {
+  display: inline-block;
+  background: rgba(246, 241, 233, 0.15);
+  color: var(--pauze-crema);
+  border: 1px solid rgba(246, 241, 233, 0.3);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--pauze-radius-pill);
+  margin-bottom: 1.5rem;
+}
+.pauze-bundle-banner__title {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  color: var(--pauze-crema);
+  margin: 0 0 1rem;
+  line-height: 1.1;
+}
+.pauze-bundle-banner__highlight {
+  background: var(--pauze-dorado);
+  color: var(--pauze-cacao-dark);
+  padding: 0 0.5rem;
+  border-radius: 8px;
+  display: inline-block;
+  font-weight: 700;
+}
+.pauze-bundle-banner__sub {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(246, 241, 233, 0.92);
+  margin: 0 0 2rem;
+}
+
+.pauze-bundle-banner__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pauze-bundle-banner__visual img { max-width: 100%; height: auto; border-radius: 16px; }
+.pauze-bundle-banner__placeholder {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1;
+  background: rgba(246, 241, 233, 0.08);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(246, 241, 233, 0.3);
+}
+.pauze-bundle-banner__emoji { font-size: 5rem; margin-bottom: 1rem; }
+.pauze-bundle-banner__placeholder-text {
+  font-style: italic;
+  opacity: 0.7;
+  font-size: 0.85rem;
+  color: var(--pauze-crema);
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Bundle banner",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_from", "label": "Color desde", "default": "#2A5C20" },
+    { "type": "color", "id": "bg_to", "label": "Color hasta", "default": "#3B7A2C" },
+    { "type": "text", "id": "tag", "label": "Tag", "default": "SUSCRIPCIÓN MENSUAL" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Suscribite y ahorrá hasta" },
+    { "type": "text", "id": "highlight", "label": "Highlight", "default": "20% siempre" },
+    { "type": "textarea", "id": "sub", "label": "Sub", "default": "Envío gratis · Guía PDF gratis · Cancelás cuando quieras" },
+    { "type": "text", "id": "cta", "label": "CTA", "default": "SUSCRIBIRME · $31.900/MES" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" },
+    { "type": "image_picker", "id": "image", "label": "Imagen" }
+  ],
+  "presets": [{ "name": "Pauze: Bundle banner" }]
+}
+{% endschema %}

@@ -1,0 +1,166 @@
+{% comment %}
+  PAUZE ACORDEONES PDP — Réplica de los 4 acordeones de O Positiv URO PDP:
+  Is This For You? / Benefits / Recommended Usage / Ingredient Facts
+{% endcomment %}
+
+<section class="pauze-section pauze-section--crema pauze-acordeones-pdp" data-section-id="{{ section.id }}">
+  <div class="pauze-container">
+    <div class="pauze-acordeones-pdp__list">
+      {% for block in section.blocks %}
+        <details class="pauze-acord" {% if block.settings.open_by_default %}open{% endif %}>
+          <summary class="pauze-acord__summary">
+            <span class="pauze-acord__title">{{ block.settings.title }}</span>
+            <span class="pauze-acord__icon">+</span>
+          </summary>
+          <div class="pauze-acord__body">
+            {{ block.settings.content }}
+          </div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-acordeones-pdp__list {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.pauze-acord {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid var(--pauze-arena);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.pauze-acord[open] {
+  border-color: var(--pauze-verde);
+  box-shadow: var(--pauze-shadow-md);
+}
+.pauze-acord__summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 1.5rem;
+  cursor: pointer;
+  gap: 1rem;
+}
+.pauze-acord__summary::-webkit-details-marker { display: none; }
+.pauze-acord__title {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--pauze-cacao);
+}
+.pauze-acord__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--pauze-verde-pale);
+  color: var(--pauze-verde-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+.pauze-acord[open] .pauze-acord__icon {
+  background: var(--pauze-verde);
+  color: white;
+  transform: rotate(45deg);
+}
+.pauze-acord__body {
+  padding: 0 1.5rem 1.75rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--pauze-off-black);
+}
+.pauze-acord__body ul {
+  padding-left: 0;
+  list-style: none;
+  margin: 0.5rem 0;
+}
+.pauze-acord__body li {
+  padding-left: 1.85rem;
+  position: relative;
+  margin-bottom: 0.6rem;
+}
+.pauze-acord__body li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--pauze-verde-pale);
+  color: var(--pauze-verde-dark);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  top: 1px;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Acordeones PDP",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "acord",
+      "name": "Acordeón",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "¿Es para mí?" },
+        { "type": "richtext", "id": "content", "label": "Contenido" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Abierto por default", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pauze: Acordeones PDP",
+      "blocks": [
+        {
+          "type": "acord",
+          "settings": {
+            "title": "¿Es para mí?",
+            "open_by_default": true,
+            "content": "<p>Si te identificás con alguna de estas, Pauze es para vos:</p><ul><li>Tenés la cabeza acelerada al meterte en la cama</li><li>Caés en el alfajor o la galletita de las 11 de la noche</li><li>Te despertás varias veces y no volvés a dormir bien</li><li>Probaste melatonina pero te levantás dopado/a</li><li>Querés un ritual nocturno saludable</li><li>Tenés trabajo de turnos rotativos o jet lag</li></ul>"
+          }
+        },
+        {
+          "type": "acord",
+          "settings": {
+            "title": "Beneficios",
+            "content": "<p>Activos clínicos que ayudan a:</p><ul><li>Conciliar el sueño más rápido</li><li>Bajar la rumiación mental</li><li>Relajar la musculatura</li><li>Reemplazar el postre dulce nocturno por algo saludable</li><li>Despertarte sin embotamiento</li></ul>"
+          }
+        },
+        {
+          "type": "acord",
+          "settings": {
+            "title": "Cómo se prepara",
+            "content": "<p><strong>Es muy simple:</strong></p><ul><li>Calentá 200ml de leche (vaca, almendra, avena, la que prefieras)</li><li>Sumá un scoop a la taza</li><li>Batí 30 segundos con cuchara, frother o licuadora</li><li>Tomalo 30 a 45 minutos antes de meterte en la cama</li></ul><p><strong>Pro tip:</strong> tomate ese tiempo. Apartá pantallas. Es parte del ritual.</p>"
+          }
+        },
+        {
+          "type": "acord",
+          "settings": {
+            "title": "Información nutricional",
+            "content": "<p><strong>Por porción (10g · 1 scoop):</strong></p><ul><li>Valor energético: 28 kcal</li><li>Carbohidratos digestibles: menos de 1g</li><li>Proteínas: 0.8g</li><li>Grasas: 0g</li><li>Sodio: 5mg</li><li>Cacao alcalinizado: 4g</li></ul><p><strong>Activos por porción:</strong></p><ul><li>L-teanina: 200mg</li><li>Apigenina (extracto manzanilla): 50mg</li><li>Magnesio glicinato: 300mg</li></ul><p><strong>Edulcorantes:</strong> eritritol, glucósidos de esteviol (stevia).</p><p><strong>NO contiene:</strong> melatonina, azúcar agregada, gluten, soja, lactosa, sucralosa, aspartamo, edulcorantes artificiales.</p><p>Suplemento dietario. No es un medicamento. RNPA en trámite.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

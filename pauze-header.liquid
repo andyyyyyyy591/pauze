@@ -1,0 +1,368 @@
+{% comment %}
+  ============================================
+  PAUZE HEADER — Sticky con mega-menu mobile
+  ============================================
+  Replica el header de O Positiv:
+  - Logo centrado en mobile, izquierda en desktop
+  - Nav desktop simple
+  - Mega-menu lateral mobile (hamburger)
+  - Account + Cart con counter
+{% endcomment %}
+
+<header class="pauze-page pauze-header" id="pauzeHeader">
+  <div class="pauze-container pauze-header__inner">
+    <button class="pauze-header__menu-btn" onclick="pauzeToggleMenu(true)" aria-label="Abrir menú">
+      <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="22" height="2" fill="currentColor"/>
+        <rect x="0" y="7" width="22" height="2" fill="currentColor"/>
+        <rect x="0" y="14" width="22" height="2" fill="currentColor"/>
+      </svg>
+    </button>
+    
+    <a href="/" class="pauze-header__logo">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="Pauze" width="120">
+      {%- else -%}
+        pauze
+      {%- endif -%}
+    </a>
+    
+    <nav class="pauze-header__nav">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'nav_link' -%}
+          <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+    
+    <div class="pauze-header__actions">
+      <a href="/account" class="pauze-header__action-btn" aria-label="Mi cuenta">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>
+        </svg>
+      </a>
+      <button class="pauze-header__cart-btn" onclick="pauzeOpenCart()" aria-label="Carrito">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18l-2 13H5L3 6z"/>
+          <path d="M8 6V4a2 2 0 014-0v2"/>
+        </svg>
+        <span class="pauze-header__cart-count" id="pauzeCartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MEGA MENU -->
+<div class="pauze-mobile-menu" id="pauzeMobileMenu">
+  <div class="pauze-mobile-menu__overlay" onclick="pauzeToggleMenu(false)"></div>
+  <div class="pauze-mobile-menu__panel">
+    <div class="pauze-mobile-menu__top">
+      <a href="/" class="pauze-mobile-menu__logo">pauze</a>
+      <button class="pauze-mobile-menu__close" onclick="pauzeToggleMenu(false)" aria-label="Cerrar">×</button>
+    </div>
+    
+    {%- if section.settings.featured_product_card -%}
+    <div class="pauze-mobile-menu__featured">
+      <span class="pauze-mobile-menu__featured-tag">BEST-SELLER</span>
+      <h3>Pauze Cocoa</h3>
+      <p>Chocolatada funcional · 300g · 30 servings</p>
+      <a href="/products/pauze-cocoa" class="pauze-btn pauze-btn--verde pauze-btn--block pauze-btn--sm">COMPRAR →</a>
+    </div>
+    {%- endif -%}
+    
+    <nav class="pauze-mobile-menu__nav">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'nav_link' -%}
+          <a href="{{ block.settings.link }}">{{ block.settings.text }} →</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+    
+    <div class="pauze-mobile-menu__footer">
+      <a href="mailto:contacto@pauze.store">📧 contacto@pauze.store</a>
+      <a href="https://instagram.com/pauze.ar" target="_blank">📷 @pauze.ar</a>
+    </div>
+  </div>
+</div>
+
+<style>
+.pauze-header {
+  background: var(--pauze-off-white);
+  border-bottom: 1px solid var(--pauze-arena);
+  padding: 0.85rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.pauze-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.pauze-header__menu-btn {
+  background: none;
+  border: none;
+  color: var(--pauze-cacao);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .pauze-header__menu-btn { display: none; }
+}
+.pauze-header__logo {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.95rem;
+  color: var(--pauze-cacao);
+  letter-spacing: -0.025em;
+  text-decoration: none;
+}
+.pauze-header__logo img {
+  width: auto;
+  height: 36px;
+}
+.pauze-header__nav {
+  display: none;
+  gap: 1.85rem;
+}
+@media (min-width: 900px) {
+  .pauze-header__nav { display: flex; }
+}
+.pauze-header__nav a {
+  color: var(--pauze-off-black);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.pauze-header__nav a:hover { color: var(--pauze-verde-dark); }
+.pauze-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.pauze-header__action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.55rem;
+  color: var(--pauze-cacao);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+.pauze-header__action-btn:hover { background: var(--pauze-arena); }
+.pauze-header__cart-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.55rem;
+  color: var(--pauze-cacao);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  position: relative;
+  transition: background 0.2s;
+}
+.pauze-header__cart-btn:hover { background: var(--pauze-arena); }
+.pauze-header__cart-count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: var(--pauze-verde);
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MOBILE MENU */
+.pauze-mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+}
+.pauze-mobile-menu.is-open { display: block; }
+.pauze-mobile-menu__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 22, 18, 0.5);
+  backdrop-filter: blur(4px);
+  animation: pauze-fade-in-up 0.25s ease;
+}
+.pauze-mobile-menu__panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 92%;
+  max-width: 360px;
+  background: var(--pauze-off-white);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.pauze-mobile-menu__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--pauze-arena);
+}
+.pauze-mobile-menu__logo {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.65rem;
+  color: var(--pauze-cacao);
+  text-decoration: none;
+}
+.pauze-mobile-menu__close {
+  background: var(--pauze-arena);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: var(--pauze-cacao);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pauze-mobile-menu__featured {
+  margin: 1.25rem 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--pauze-cacao) 0%, var(--pauze-cacao-dark) 100%);
+  color: var(--pauze-crema);
+  border-radius: 16px;
+}
+.pauze-mobile-menu__featured-tag {
+  display: inline-block;
+  background: var(--pauze-verde);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--pauze-radius-pill);
+  margin-bottom: 0.75rem;
+}
+.pauze-mobile-menu__featured h3 {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--pauze-crema);
+  margin: 0 0 0.35rem;
+}
+.pauze-mobile-menu__featured p {
+  font-size: 0.83rem;
+  color: var(--pauze-beige);
+  margin: 0 0 1rem;
+}
+.pauze-mobile-menu__nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.5rem;
+  flex-grow: 1;
+}
+.pauze-mobile-menu__nav a {
+  padding: 1rem 0;
+  font-size: 1.05rem;
+  color: var(--pauze-cacao);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid var(--pauze-arena);
+}
+.pauze-mobile-menu__nav a:hover { color: var(--pauze-verde-dark); }
+.pauze-mobile-menu__footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--pauze-arena);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.pauze-mobile-menu__footer a {
+  font-size: 0.85rem;
+  color: var(--pauze-gris-dark);
+  text-decoration: none;
+}
+</style>
+
+<script>
+function pauzeToggleMenu(open) {
+  const menu = document.getElementById('pauzeMobileMenu');
+  if (!menu) return;
+  menu.classList.toggle('is-open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function pauzeOpenCart() {
+  // Triggers cart drawer (configurar con Caching Cart o Shrine's cart-notification)
+  if (window.theme && window.theme.cartDrawer) {
+    window.theme.cartDrawer.open();
+  } else {
+    window.location.href = '/cart';
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "Pauze: Header",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo (PNG/SVG, alto 36px)"
+    },
+    {
+      "type": "checkbox",
+      "id": "featured_product_card",
+      "label": "Mostrar card de producto destacado en menú mobile",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Link nav",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto", "default": "Comprar" },
+        { "type": "url", "id": "link", "label": "Link", "default": "/products/pauze-cocoa" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Pauze: Header",
+      "blocks": [
+        { "type": "nav_link", "settings": { "text": "Comprar", "link": "/products/pauze-cocoa" } },
+        { "type": "nav_link", "settings": { "text": "Ingredientes", "link": "/pages/ingredientes" } },
+        { "type": "nav_link", "settings": { "text": "Cómo funciona", "link": "/pages/ciencia" } },
+        { "type": "nav_link", "settings": { "text": "Reseñas", "link": "/products/pauze-cocoa#reviews" } },
+        { "type": "nav_link", "settings": { "text": "Blog", "link": "/blogs/ritual" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

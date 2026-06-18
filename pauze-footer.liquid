@@ -1,0 +1,370 @@
+{% comment %}
+  PAUZE FOOTER — Réplica del footer de O Positiv adaptado a AR
+  - Columnas: Producto / Soporte / Comunidad / Newsletter
+  - Badges pago: MP / Visa / Master / Amex / Cabal / Naranja
+  - Badges envío: Andreani / Correo Argentino
+  - Logo wordmark grande abajo
+  - Disclaimer ANMAT + RNPA + razón social
+  - Copyright + links legales
+{% endcomment %}
+
+<footer class="pauze-footer" data-section-id="{{ section.id }}">
+  <div class="pauze-footer__newsletter">
+    <div class="pauze-footer__inner">
+      <h3 class="pauze-footer__newsletter-title">{{ section.settings.newsletter_title | default: 'Sumate a la comunidad Pauze' }}</h3>
+      <p class="pauze-footer__newsletter-sub">{{ section.settings.newsletter_sub | default: 'Recibí tips de sueño + 10% OFF en tu primera compra' }}</p>
+      {% form 'customer', class: 'pauze-footer__form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" placeholder="tu@email.com" required class="pauze-footer__email">
+        <button type="submit" class="pauze-btn pauze-btn--verde pauze-footer__submit">SUMARME →</button>
+      {% endform %}
+    </div>
+  </div>
+
+  <div class="pauze-footer__main">
+    <div class="pauze-footer__inner">
+      <div class="pauze-footer__cols">
+        <div class="pauze-footer__col pauze-footer__col--brand">
+          <div class="pauze-footer__logo-italic">pauze</div>
+          <p class="pauze-footer__tagline">Hacé tu pausa.</p>
+          <div class="pauze-footer__social">
+            <a href="{{ section.settings.instagram_url | default: 'https://instagram.com/pauze.ar' }}" target="_blank" rel="noopener" aria-label="Instagram Pauze">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="{{ section.settings.tiktok_url | default: '#' }}" target="_blank" rel="noopener" aria-label="TikTok Pauze">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 6.3a4.8 4.8 0 0 1-3.4-1.5 4.8 4.8 0 0 1-1.4-3.2h-3.4v13.2a2.7 2.7 0 0 1-2.7 2.7 2.7 2.7 0 1 1 .8-5.3v-3.4a6.1 6.1 0 1 0 5.3 6.1V9.8a8.1 8.1 0 0 0 4.8 1.5V7.9c0-.5-.4-1.6 0-1.6z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="pauze-footer__col">
+          <h4 class="pauze-footer__col-title">Producto</h4>
+          <ul class="pauze-footer__list">
+            <li><a href="/products/pauze-cocoa">Pauze Cocoa</a></li>
+            <li><a href="/products/suscripcion-pauze-mensual">Suscripción mensual</a></li>
+            <li><a href="/pages/ingredientes">Ingredientes</a></li>
+            <li><a href="/pages/ciencia">La ciencia detrás</a></li>
+            <li><a href="/pages/ritual">Cómo se prepara</a></li>
+          </ul>
+        </div>
+
+        <div class="pauze-footer__col">
+          <h4 class="pauze-footer__col-title">Soporte</h4>
+          <ul class="pauze-footer__list">
+            <li><a href="/pages/contacto">Contacto</a></li>
+            <li><a href="/pages/faq">Preguntas frecuentes</a></li>
+            <li><a href="/pages/politicas-envio">Envíos</a></li>
+            <li><a href="/pages/politicas-devolucion">Garantía 14 noches</a></li>
+            <li><a href="/pages/seguimiento">Seguir mi pedido</a></li>
+          </ul>
+        </div>
+
+        <div class="pauze-footer__col">
+          <h4 class="pauze-footer__col-title">Comunidad</h4>
+          <ul class="pauze-footer__list">
+            <li><a href="/blogs/ritual">Blog: Tu ritual</a></li>
+            <li><a href="/pages/nuestro-compromiso">Nuestro compromiso</a></li>
+            <li><a href="/pages/nuestra-historia">Nuestra historia</a></li>
+            <li><a href="/pages/referidos">Programa de referidos</a></li>
+            <li><a href="/pages/encontra-tu-pack">Encontrá tu pack</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pauze-footer__badges">
+        <div class="pauze-footer__badges-group">
+          <span class="pauze-footer__badges-label">Pagás con</span>
+          <div class="pauze-footer__badges-row">
+            <span class="pauze-footer__pay-badge">MP</span>
+            <span class="pauze-footer__pay-badge">VISA</span>
+            <span class="pauze-footer__pay-badge">MC</span>
+            <span class="pauze-footer__pay-badge">AMEX</span>
+            <span class="pauze-footer__pay-badge">CABAL</span>
+            <span class="pauze-footer__pay-badge">NARANJA</span>
+          </div>
+        </div>
+        <div class="pauze-footer__badges-group">
+          <span class="pauze-footer__badges-label">Enviamos con</span>
+          <div class="pauze-footer__badges-row">
+            <span class="pauze-footer__ship-badge">ANDREANI</span>
+            <span class="pauze-footer__ship-badge">CORREO ARGENTINO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pauze-footer__wordmark">
+        <span>pauze</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pauze-footer__legal">
+    <div class="pauze-footer__inner">
+      <p class="pauze-footer__disclaimer">
+        * Estas declaraciones no han sido evaluadas por ANMAT. Pauze es un complemento alimentario, no un medicamento, y no está destinado a diagnosticar, tratar, curar o prevenir ninguna enfermedad. Consultá con tu médico antes de incorporarlo si estás embarazada, en período de lactancia, o tomando medicación.<br>
+        RNPA en trámite · RNE en trámite · Conservar en lugar fresco y seco.
+      </p>
+      <div class="pauze-footer__legal-row">
+        <div class="pauze-footer__legal-links">
+          <a href="/policies/terms-of-service">Términos y Condiciones</a>
+          <a href="/policies/privacy-policy">Privacidad</a>
+          <a href="/policies/refund-policy">Garantía y Devoluciones</a>
+          <a href="/policies/shipping-policy">Política de Envíos</a>
+        </div>
+        <p class="pauze-footer__copyright">© 2026 Pauze SRL · Todos los derechos reservados · Hecho en Argentina</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .pauze-footer {
+    background: var(--pauze-cacao-dark);
+    color: var(--pauze-crema);
+    font-family: var(--pauze-font-body);
+  }
+  .pauze-footer__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .pauze-footer__newsletter {
+    background: linear-gradient(135deg, var(--pauze-verde-dark), var(--pauze-verde));
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+  .pauze-footer__newsletter-title {
+    font-family: var(--pauze-font-display);
+    font-style: italic;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--pauze-crema);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .pauze-footer__newsletter-sub {
+    color: rgba(246, 241, 233, 0.85);
+    margin: 0 0 2rem;
+    font-size: 1.05rem;
+  }
+  .pauze-footer__form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 480px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .pauze-footer__email {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.95rem 1.25rem;
+    border-radius: 999px;
+    border: none;
+    font-family: var(--pauze-font-body);
+    font-size: 1rem;
+    background: var(--pauze-crema);
+    color: var(--pauze-off-black);
+  }
+  .pauze-footer__submit {
+    border-radius: 999px;
+    padding: 0.95rem 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    background: var(--pauze-cacao-dark);
+    color: var(--pauze-crema);
+    border: 2px solid var(--pauze-cacao-dark);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .pauze-footer__submit:hover {
+    background: var(--pauze-off-black);
+  }
+
+  .pauze-footer__main {
+    padding: 4rem 0 2rem;
+  }
+  .pauze-footer__cols {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 768px) {
+    .pauze-footer__cols {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .pauze-footer__col--brand { grid-column: 1 / -1; margin-bottom: 1rem; }
+  }
+  .pauze-footer__logo-italic {
+    font-family: var(--pauze-font-display);
+    font-style: italic;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--pauze-crema);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+  }
+  .pauze-footer__tagline {
+    font-family: var(--pauze-font-display);
+    font-style: italic;
+    color: rgba(246, 241, 233, 0.7);
+    font-size: 1.05rem;
+    margin: 0 0 1.5rem;
+  }
+  .pauze-footer__social {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .pauze-footer__social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(246, 241, 233, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pauze-crema);
+    transition: all 0.2s;
+  }
+  .pauze-footer__social a:hover {
+    background: var(--pauze-verde);
+    border-color: var(--pauze-verde);
+  }
+  .pauze-footer__col-title {
+    font-family: var(--pauze-font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pauze-crema);
+    margin: 0 0 1rem;
+    opacity: 0.85;
+  }
+  .pauze-footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .pauze-footer__list li {
+    margin-bottom: 0.6rem;
+  }
+  .pauze-footer__list a {
+    color: rgba(246, 241, 233, 0.75);
+    text-decoration: none;
+    font-size: 0.94rem;
+    transition: color 0.2s;
+  }
+  .pauze-footer__list a:hover {
+    color: var(--pauze-verde-bright);
+  }
+
+  .pauze-footer__badges {
+    border-top: 1px solid rgba(246, 241, 233, 0.1);
+    padding-top: 2rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pauze-footer__badges-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .pauze-footer__badges-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(246, 241, 233, 0.6);
+  }
+  .pauze-footer__badges-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .pauze-footer__pay-badge,
+  .pauze-footer__ship-badge {
+    background: rgba(246, 241, 233, 0.1);
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--pauze-crema);
+    border: 1px solid rgba(246, 241, 233, 0.15);
+  }
+
+  .pauze-footer__wordmark {
+    text-align: center;
+    padding: 3rem 0 1rem;
+    border-top: 1px solid rgba(246, 241, 233, 0.1);
+    margin-top: 3rem;
+  }
+  .pauze-footer__wordmark span {
+    font-family: var(--pauze-font-display);
+    font-style: italic;
+    font-size: clamp(5rem, 15vw, 10rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: rgba(246, 241, 233, 0.15);
+    line-height: 0.8;
+  }
+
+  .pauze-footer__legal {
+    background: var(--pauze-off-black);
+    padding: 2rem 0;
+  }
+  .pauze-footer__disclaimer {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(246, 241, 233, 0.55);
+    margin: 0 0 1.5rem;
+    max-width: 900px;
+  }
+  .pauze-footer__legal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(246, 241, 233, 0.08);
+  }
+  .pauze-footer__legal-links {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .pauze-footer__legal-links a {
+    color: rgba(246, 241, 233, 0.55);
+    font-size: 0.78rem;
+    text-decoration: none;
+  }
+  .pauze-footer__legal-links a:hover {
+    color: var(--pauze-crema);
+  }
+  .pauze-footer__copyright {
+    font-size: 0.78rem;
+    color: rgba(246, 241, 233, 0.4);
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pauze Footer",
+  "settings": [
+    { "type": "header", "content": "Newsletter" },
+    { "type": "text", "id": "newsletter_title", "label": "Título", "default": "Sumate a la comunidad Pauze" },
+    { "type": "text", "id": "newsletter_sub", "label": "Subtítulo", "default": "Recibí tips de sueño + 10% OFF en tu primera compra" },
+    { "type": "header", "content": "Social" },
+    { "type": "url", "id": "instagram_url", "label": "URL Instagram" },
+    { "type": "url", "id": "tiktok_url", "label": "URL TikTok" }
+  ],
+  "presets": [{ "name": "Pauze Footer" }]
+}
+{% endschema %}

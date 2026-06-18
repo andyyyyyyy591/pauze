@@ -1,0 +1,138 @@
+{% comment %}
+  ============================================
+  PAUZE DOYPACK SVG — Mockup reusable
+  ============================================
+  Uso:
+    {% raw %}{% render 'pauze-doypack', size: 'medium', shadow: true %}{% endraw %}
+  
+  Params:
+    - size: small | medium | large | xlarge (default: medium)
+    - shadow: true | false (default: true)
+    - badge_text: texto opcional para badge SIN MELATONINA (default: 'SIN MELATONINA')
+{% endcomment %}
+
+{%- liquid
+  assign size = size | default: 'medium'
+  assign shadow = shadow | default: true
+  assign badge_text = badge_text | default: 'SIN MELATONINA'
+
+  case size
+    when 'small'
+      assign width = '200'
+      assign height = '260'
+    when 'medium'
+      assign width = '300'
+      assign height = '400'
+    when 'large'
+      assign width = '380'
+      assign height = '500'
+    when 'xlarge'
+      assign width = '460'
+      assign height = '600'
+  endcase
+-%}
+
+<svg class="pauze-doypack pauze-doypack--{{ size }}"
+     viewBox="0 0 380 500" 
+     width="{{ width }}" 
+     height="{{ height }}"
+     xmlns="http://www.w3.org/2000/svg"
+     aria-label="Pauze Cocoa - doypack 300g">
+  <defs>
+    <linearGradient id="pauzeDoyGrad-{{ section.id | default: 'main' }}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5A3E2B"/>
+      <stop offset="50%" stop-color="#4A3422"/>
+      <stop offset="100%" stop-color="#3D2C1F"/>
+    </linearGradient>
+    <linearGradient id="pauzeDoyHL-{{ section.id | default: 'main' }}" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B6A52" stop-opacity="0.3"/>
+      <stop offset="30%" stop-color="#A87E5F" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  {%- if shadow -%}
+  <ellipse cx="190" cy="480" rx="135" ry="12" fill="#000" opacity="0.35"/>
+  {%- endif -%}
+
+  <!-- Cuerpo del doypack -->
+  <path d="M 70 90 Q 70 70 90 65 L 290 65 Q 310 70 310 90 L 305 460 Q 303 475 285 478 L 95 478 Q 77 475 75 460 Z" fill="url(#pauzeDoyGrad-{{ section.id | default: 'main' }})"/>
+  <path d="M 70 90 Q 70 70 90 65 L 290 65 Q 310 70 310 90 L 305 460 Q 303 475 285 478 L 95 478 Q 77 475 75 460 Z" fill="url(#pauzeDoyHL-{{ section.id | default: 'main' }})"/>
+  
+  <!-- Sello superior (corte zigzag opcional) -->
+  <rect x="65" y="50" width="250" height="22" rx="3" fill="#3D2C1F"/>
+  <line x1="75" y1="58" x2="305" y2="58" stroke="#6B4A37" stroke-width="0.5" opacity="0.6"/>
+  <line x1="75" y1="64" x2="305" y2="64" stroke="#6B4A37" stroke-width="0.5" opacity="0.6"/>
+  <path d="M 65 70 L 315 70 L 315 78 L 65 78 Z" fill="#2A2520" opacity="0.5"/>
+  
+  <!-- Etiqueta crema -->
+  <rect x="100" y="160" width="180" height="240" rx="2" fill="#F6F1E9"/>
+  
+  <!-- Logo wordmark -->
+  <text x="190" y="215" text-anchor="middle" 
+        font-family="Cormorant Garamond, serif" 
+        font-style="italic" 
+        font-weight="700" 
+        font-size="42" 
+        fill="#5A3E2B" 
+        letter-spacing="-1">pauze</text>
+  
+  <!-- Línea decorativa -->
+  <line x1="135" y1="232" x2="245" y2="232" stroke="#D4C1AE" stroke-width="0.8"/>
+  
+  <!-- Eyebrow -->
+  <text x="190" y="255" text-anchor="middle" 
+        font-family="DM Sans, sans-serif" 
+        font-weight="500" 
+        font-size="9" 
+        fill="#8B6A52" 
+        letter-spacing="2">CHOCOLATADA FUNCIONAL</text>
+  
+  <!-- Producto -->
+  <text x="190" y="298" text-anchor="middle" 
+        font-family="Cormorant Garamond, serif" 
+        font-style="italic" 
+        font-weight="600" 
+        font-size="22" 
+        fill="#5A3E2B">Cocoa</text>
+  
+  <!-- Ingredientes -->
+  <text x="190" y="332" text-anchor="middle" 
+        font-family="DM Sans, sans-serif" 
+        font-weight="500" 
+        font-size="8" 
+        fill="#5A3E2B" 
+        letter-spacing="0.5">L-TEANINA · APIGENINA · MAGNESIO</text>
+  
+  <!-- Badge verde -->
+  <rect x="125" y="345" width="130" height="20" rx="10" fill="#3B7A2C"/>
+  <text x="190" y="358" text-anchor="middle" 
+        font-family="DM Sans, sans-serif" 
+        font-weight="700" 
+        font-size="8" 
+        fill="white" 
+        letter-spacing="1">{{ badge_text }}</text>
+  
+  <!-- Peso -->
+  <text x="190" y="385" text-anchor="middle" 
+        font-family="DM Sans, sans-serif" 
+        font-weight="500" 
+        font-size="11" 
+        fill="#8B6A52">300g · 30 servings</text>
+  
+  <!-- Sombra base -->
+  {%- if shadow -%}
+  <ellipse cx="190" cy="473" rx="118" ry="8" fill="#2A2520" opacity="0.6"/>
+  {%- endif -%}
+</svg>
+
+<style>
+.pauze-doypack { 
+  max-width: 100%; 
+  height: auto;
+  filter: drop-shadow(0 24px 50px rgba(0,0,0,0.25));
+}
+.pauze-doypack--xlarge { 
+  filter: drop-shadow(0 32px 60px rgba(0,0,0,0.35));
+}
+</style>

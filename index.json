@@ -1,0 +1,183 @@
+{
+  "_comment": "PAUZE HOME — 16 secciones replicando estructura de O Positiv homepage",
+  "sections": {
+    "header": {
+      "type": "pauze-header",
+      "blocks": {
+        "nav-1": { "type": "nav_link", "settings": { "text": "Comprar", "link": "/products/pauze-cocoa" } },
+        "nav-2": { "type": "nav_link", "settings": { "text": "Ingredientes", "link": "/pages/ingredientes" } },
+        "nav-3": { "type": "nav_link", "settings": { "text": "Cómo funciona", "link": "/pages/ciencia" } },
+        "nav-4": { "type": "nav_link", "settings": { "text": "Reseñas", "link": "/products/pauze-cocoa#reviews" } },
+        "nav-5": { "type": "nav_link", "settings": { "text": "Blog", "link": "/blogs/ritual" } }
+      },
+      "block_order": ["nav-1", "nav-2", "nav-3", "nav-4", "nav-5"]
+    },
+    "announcement": {
+      "type": "pauze-announcement-bar",
+      "blocks": {
+        "msg-1": { "type": "message", "settings": { "icon": "🎉", "text": "10% OFF tu primera compra · CÓDIGO PAUZE10" } },
+        "msg-2": { "type": "message", "settings": { "icon": "🚚", "text": "Envío gratis desde $39.900" } },
+        "msg-3": { "type": "message", "settings": { "icon": "💳", "text": "12 cuotas sin interés con Mercado Pago" } },
+        "msg-4": { "type": "message", "settings": { "icon": "🛡️", "text": "Garantía 14 noches sin devolver el pack" } },
+        "msg-5": { "type": "message", "settings": { "icon": "🌙", "text": "Sin pastillas · Sin azúcar · Sin resaca" } }
+      },
+      "block_order": ["msg-1", "msg-2", "msg-3", "msg-4", "msg-5"]
+    },
+    "home-hero": {
+      "type": "pauze-home-hero",
+      "settings": {
+        "eyebrow": "PAUZE PM BLEND · 30 PORCIONES",
+        "heading_pre": "Apagá la noche.",
+        "heading_italic": "Hacé tu pausa.",
+        "subheading": "Tu postre nocturno con L-teanina, apigenina y magnesio. Sin melatonina, sin azúcar agregada, sin resaca.",
+        "cta_text": "COMPRAR · $39.900",
+        "cta_url": "/products/pauze-cocoa",
+        "cta2_text": "Cómo funciona →",
+        "cta2_url": "/pages/ciencia",
+        "show_ranking_card": true,
+        "ranking_title": "PM Blend",
+        "ranking_sub": "en Argentina"
+      }
+    },
+    "helps-with": {
+      "type": "pauze-helps-with",
+      "settings": {
+        "bg_color": "#FAFAF8",
+        "eyebrow": "Hacé tu pausa",
+        "heading": "Tu ritual nocturno con un solo scoop",
+        "cta_text": "COMPRAR AHORA",
+        "cta_link": "/products/pauze-cocoa"
+      },
+      "blocks": {
+        "i-1": { "type": "icon", "settings": { "icon": "🌙", "icon_bg": "#DBE8CC", "label": "DORMIR MEJOR", "description": "Activos clínicos que ayudan al sueño" } },
+        "i-2": { "type": "icon", "settings": { "icon": "🧠", "icon_bg": "#F5E5C9", "label": "BAJAR LA MENTE", "description": "L-teanina + apigenina para apagar la cabeza" } },
+        "i-3": { "type": "icon", "settings": { "icon": "🍫", "icon_bg": "#E6D8C8", "label": "POSTRE NOCTURNO", "description": "Sin culpa, sin azúcar agregada" } },
+        "i-4": { "type": "icon", "settings": { "icon": "🌅", "icon_bg": "#FAE5D3", "label": "SIN RESACA", "description": "Te despertás claro/a, no embotado/a" } }
+      },
+      "block_order": ["i-1", "i-2", "i-3", "i-4"]
+    },
+    "encontra-pack": {
+      "type": "pauze-encontra-tu-pack",
+      "settings": {
+        "eyebrow": "ENCONTRÁ TU PACK",
+        "heading": "Tres formas de empezar",
+        "sub": "Recomendamos 2-3 meses de uso consistente para resultados profundos."
+      },
+      "blocks": {
+        "p-1": { "type": "pack", "settings": { "subtitle": "PROBAR", "title": "Pack individual", "desc": "30 noches de pausa. Probalo sin compromiso con la garantía de 14 noches.", "price": "39.900", "price_per": "/pack", "cta": "ELEGIR INDIVIDUAL →", "url": "/products/pauze-cocoa?variant=1" } },
+        "p-2": { "type": "pack", "settings": { "tag": "MÁS ELEGIDO", "tag_color": "#3B7A2C", "featured": true, "subtitle": "RECOMENDADO", "title": "Pack x2", "desc": "60 noches. La cantidad que recomendamos para que se note la diferencia.", "compare_price": "79.800", "price": "69.900", "price_per": "/2 packs", "savings": "Ahorrás $9.900 + Guía PDF gratis", "cta": "ELEGIR PACK X2 →", "url": "/products/pauze-cocoa?variant=2" } },
+        "p-3": { "type": "pack", "settings": { "tag": "MEJOR PRECIO", "tag_color": "#E07A3F", "subtitle": "FAMILIA / SUSCRIPCIÓN", "title": "Pack x3 o Suscripción", "desc": "90 noches o 1 pack/mes con 20% off siempre. Más Frother de regalo.", "compare_price": "119.700", "price": "99.900", "price_per": "/3 packs", "savings": "Ahorrás $19.800 + Frother + Guía", "cta": "ELEGIR PACK X3 →", "url": "/products/pauze-cocoa?variant=3" } }
+      },
+      "block_order": ["p-1", "p-2", "p-3"]
+    },
+    "target-symptoms": {
+      "type": "pauze-target-symptoms",
+      "settings": {
+        "eyebrow": "NUESTRO MÉTODO",
+        "heading": "Activos con evidencia real,",
+        "heading_italic": "no marketing",
+        "sub": "Una formulación honesta con dosis clínicas declaradas en el frente del pack. Sin proprietary blend, sin números mágicos.",
+        "cta_text": "VER INGREDIENTES",
+        "cta_url": "/pages/ingredientes"
+      },
+      "blocks": {
+        "s-1": { "type": "stat", "settings": { "num": "3", "label": "Activos clínicos declarados" } },
+        "s-2": { "type": "stat", "settings": { "num": "+340", "label": "Personas tomando Pauze" } },
+        "s-3": { "type": "stat", "settings": { "num": "100%", "label": "Hecho en Argentina" } }
+      },
+      "block_order": ["s-1", "s-2", "s-3"]
+    },
+    "testimonials": {
+      "type": "pauze-testimonials",
+      "settings": {
+        "bg_color": "#FAFAF8",
+        "eyebrow": "+340 reseñas reales",
+        "heading": "Lo que cuenta gente que duerme mejor"
+      },
+      "blocks": {
+        "t-1": { "type": "testimonial", "settings": { "title": "Por fin dejé el alfajor de las 11", "body": "Hace dos meses lo tomo todas las noches. Cambié el alfajor de las 11 por algo que me hace bien.", "name": "Martín G.", "initial": "M" } },
+        "t-2": { "type": "testimonial", "settings": { "title": "Sin resaca al despertar", "body": "Probé melatonina por meses y siempre me levantaba dopado. Pauze no me deja esa sensación rara.", "name": "Mariana V.", "initial": "M" } },
+        "t-3": { "type": "testimonial", "settings": { "title": "Mi cabeza por fin se apaga", "body": "Trabajo en turnos rotativos. A los 4 días me dormí sin darme cuenta. Hace 3 semanas que duermo así.", "name": "Nicolás R.", "initial": "N" } },
+        "t-4": { "type": "testimonial", "settings": { "title": "Es un ritual hermoso", "body": "Más allá del efecto, el ritual mismo me cambió la noche. Antes con el celu hasta las 2. Ahora a las 11 ya duermo.", "name": "Camila P.", "initial": "C" } },
+        "t-5": { "type": "testimonial", "settings": { "title": "Lo recomendó mi nutricionista", "body": "Me indicaba magnesio glicinato y L-teanina por separado. Cuando le mostré Pauze me dijo que tenía dosis correctas.", "name": "Julián A.", "initial": "J" } },
+        "t-6": { "type": "testimonial", "settings": { "title": "Estaba escéptico", "body": "Compré por la garantía de 14 noches. No tuve que devolver nada. Voy por mi tercer pack.", "name": "Bruno T.", "initial": "B" } }
+      },
+      "block_order": ["t-1", "t-2", "t-3", "t-4", "t-5", "t-6"]
+    },
+    "science-backed": {
+      "type": "pauze-science-backed",
+      "settings": {
+        "eyebrow": "Avalado por la ciencia",
+        "heading": "Cada activo, respaldado por papers reales",
+        "subheading": "No te pedimos que confíes en nosotros — confiá en la evidencia."
+      },
+      "blocks": {
+        "sb-1": { "type": "paper", "settings": { "journal": "Asia Pacific J Clin Nutr", "year": "2008", "title": "L-teanina y ondas alpha cerebrales", "finding": "La L-teanina (200mg) aumenta significativamente la actividad de ondas alpha — el patrón asociado a la relajación atenta sin sedación.", "link": "https://pubmed.ncbi.nlm.nih.gov/18296328/" } },
+        "sb-2": { "type": "paper", "settings": { "journal": "Phytomedicine", "year": "2019", "title": "Apigenina y receptores GABA", "finding": "La apigenina se une a receptores GABA-A en el cerebro, produciendo efectos ansiolíticos suaves similares a la manzanilla concentrada.", "link": "https://pubmed.ncbi.nlm.nih.gov/30668053/" } },
+        "sb-3": { "type": "paper", "settings": { "journal": "J Res Med Sci", "year": "2012", "title": "Magnesio y sueño en adultos", "finding": "La suplementación con magnesio mejora significativamente la calidad del sueño, reduce el tiempo de latencia y aumenta el sueño profundo.", "link": "https://pubmed.ncbi.nlm.nih.gov/23853635/" } }
+      },
+      "block_order": ["sb-1", "sb-2", "sb-3"]
+    },
+    "press-logos": {
+      "type": "pauze-press-logos",
+      "settings": {
+        "eyebrow": "Próximamente en medios",
+        "note": "Estamos en proceso de prensa. Si sos periodista, escribinos: contacto@pauze.store"
+      },
+      "blocks": {
+        "l-1": { "type": "logo", "settings": { "name": "Tu medio" } },
+        "l-2": { "type": "logo", "settings": { "name": "Tu medio" } },
+        "l-3": { "type": "logo", "settings": { "name": "Tu medio" } },
+        "l-4": { "type": "logo", "settings": { "name": "Tu medio" } },
+        "l-5": { "type": "logo", "settings": { "name": "Tu medio" } }
+      },
+      "block_order": ["l-1", "l-2", "l-3", "l-4", "l-5"]
+    },
+    "bundle-banner": {
+      "type": "pauze-bundle-banner",
+      "settings": {
+        "tag": "SUSCRIPCIÓN MENSUAL",
+        "title": "Suscribite y ahorrá hasta",
+        "highlight": "20% siempre",
+        "sub": "Envío gratis · Guía PDF \"30 noches de ritual\" gratis · Cancelás cuando quieras",
+        "cta": "SUSCRIBIRME · $31.900/MES",
+        "cta_url": "/products/pauze-cocoa?mode=sub"
+      }
+    },
+    "quiz": {
+      "type": "pauze-quiz-encontra-pack"
+    },
+    "blog-cards": {
+      "type": "pauze-blog-cards",
+      "settings": {
+        "eyebrow": "TU RITUAL NOCTURNO",
+        "heading": "Aprendé más en el blog",
+        "cta_url": "/blogs/ritual"
+      },
+      "blocks": {
+        "b-1": { "type": "post", "settings": { "placeholder_color": "#3D2C1F", "emoji": "🌙", "category": "Sueño", "title": "Por qué dormimos peor a partir de los 30", "excerpt": "El cortisol, las pantallas y la rumiación nocturna. Lo que la ciencia dice sobre cómo cambia tu sueño después de los 30.", "url": "/blogs/ritual/por-que-dormimos-peor-a-partir-de-los-30" } },
+        "b-2": { "type": "post", "settings": { "placeholder_color": "#A03A2C", "emoji": "💊", "category": "Mito vs Ciencia", "title": "El mito de la melatonina", "excerpt": "Por qué la melatonina no es una pastilla mágica para dormir, y qué dice la evidencia sobre su uso real.", "url": "/blogs/ritual/el-mito-de-la-melatonina" } },
+        "b-3": { "type": "post", "settings": { "placeholder_color": "#B85C28", "emoji": "🍫", "category": "Comportamiento", "title": "Antojo dulce nocturno: qué es y cómo se calma", "excerpt": "El alfajor de las 11 no es debilidad. Es biología. Te contamos qué está pasando y qué podés hacer.", "url": "/blogs/ritual/antojo-dulce-nocturno" } }
+      },
+      "block_order": ["b-1", "b-2", "b-3"]
+    },
+    "popup": { "type": "pauze-newsletter-popup" },
+    "footer": { "type": "pauze-footer" }
+  },
+  "order": [
+    "announcement",
+    "header",
+    "home-hero",
+    "helps-with",
+    "encontra-pack",
+    "target-symptoms",
+    "testimonials",
+    "science-backed",
+    "press-logos",
+    "bundle-banner",
+    "quiz",
+    "blog-cards",
+    "popup",
+    "footer"
+  ]
+}

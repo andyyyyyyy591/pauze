@@ -1,0 +1,240 @@
+{% comment %}
+  ============================================
+  PAUZE TESTIMONIALS — Carrusel testimonios
+  ============================================
+  Replica el bloque de 6 testimonios destacados de O Positiv URO PDP.
+  Cards horizontales con scroll snap en mobile, grid en desktop.
+  
+  USAR EN: home + PDP
+{% endcomment %}
+
+<section class="pauze-page pauze-section pauze-testimonials" 
+         style="background: {{ section.settings.bg_color | default: '#FAFAF8' }};">
+  <div class="pauze-container">
+    <div class="pauze-section__header pauze-reveal">
+      <span class="pauze-eyebrow">{{ section.settings.eyebrow | default: '+340 reseñas reales' }}</span>
+      <h2 class="pauze-h2">{{ section.settings.heading | default: 'Lo que cuenta gente que duerme mejor' }}</h2>
+      <div class="pauze-testimonials__rating-chip">
+        <span class="pauze-testimonials__stars">★★★★★</span>
+        <span class="pauze-testimonials__rating-num">4.9</span>
+        <span class="pauze-testimonials__rating-text">{{ section.settings.rating_text | default: 'basado en +340 reseñas verificadas' }}</span>
+      </div>
+    </div>
+
+    <div class="pauze-testimonials__grid">
+      {%- for block in section.blocks -%}
+        <article class="pauze-testimonials__card pauze-reveal" {{ block.shopify_attributes }}>
+          <div class="pauze-testimonials__stars-card">★★★★★</div>
+          <h3 class="pauze-testimonials__title">{{ block.settings.title }}</h3>
+          <p class="pauze-testimonials__body">{{ block.settings.body }}</p>
+          <div class="pauze-testimonials__author">
+            <div class="pauze-testimonials__avatar">{{ block.settings.initial | default: 'P' }}</div>
+            <div class="pauze-testimonials__meta">
+              <strong>{{ block.settings.name }}</strong>
+              <div class="pauze-testimonials__verified">
+                <span class="pauze-testimonials__check">✓</span>
+                <span>Cliente verificado</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.cta_text != blank -%}
+      <div class="pauze-text-center pauze-mt-4">
+        <a href="{{ section.settings.cta_link }}" class="pauze-btn pauze-btn--outline-cacao">{{ section.settings.cta_text }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+.pauze-testimonials__rating-chip {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--pauze-radius-pill);
+  box-shadow: var(--pauze-shadow-sm);
+}
+.pauze-testimonials__stars { color: var(--pauze-dorado); letter-spacing: 0.15em; }
+.pauze-testimonials__rating-num {
+  font-family: var(--pauze-font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--pauze-cacao);
+}
+.pauze-testimonials__rating-text { font-size: 0.85rem; color: var(--pauze-gris-dark); }
+
+.pauze-testimonials__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+@media (min-width: 640px) {
+  .pauze-testimonials__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .pauze-testimonials__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.pauze-testimonials__card {
+  background: white;
+  padding: 1.85rem;
+  border-radius: 16px;
+  box-shadow: var(--pauze-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+.pauze-testimonials__card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--pauze-shadow-md);
+  border-color: var(--pauze-verde-bright);
+}
+.pauze-testimonials__stars-card {
+  color: var(--pauze-dorado);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.95rem;
+}
+.pauze-testimonials__title {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--pauze-cacao);
+  margin: 0 0 0.85rem;
+  line-height: 1.25;
+}
+.pauze-testimonials__body {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--pauze-off-black);
+  margin: 0 0 1.25rem;
+  flex-grow: 1;
+}
+.pauze-testimonials__author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--pauze-arena);
+}
+.pauze-testimonials__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--pauze-verde-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--pauze-verde-dark);
+  flex-shrink: 0;
+}
+.pauze-testimonials__meta strong {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--pauze-cacao);
+}
+.pauze-testimonials__verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--pauze-verde-dark);
+  margin-top: 0.1rem;
+}
+.pauze-testimonials__check {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--pauze-verde);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Testimonios",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fondo",
+      "default": "#FAFAF8"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "+340 reseñas reales"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Lo que cuenta gente que duerme mejor"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Texto rating",
+      "default": "basado en +340 reseñas verificadas"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA opcional"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link CTA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonio",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Por fin dejé el alfajor de las 11" },
+        { "type": "textarea", "id": "body", "label": "Texto", "default": "Hace dos meses lo tomo todas las noches. Lo más sorprendente es que cambié el alfajor de la noche por algo que me hace bien." },
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Martín G." },
+        { "type": "text", "id": "initial", "label": "Inicial (avatar)", "default": "M" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Pauze: Testimonios",
+      "blocks": [
+        { "type": "testimonial", "settings": { "title": "Por fin dejé el alfajor de las 11", "body": "Hace dos meses lo tomo todas las noches. Lo más sorprendente es que cambié el alfajor de las 11 de la noche por algo que me hace bien.", "name": "Martín G.", "initial": "M" } },
+        { "type": "testimonial", "settings": { "title": "Sin resaca al despertar", "body": "Probé melatonina por meses y siempre me levantaba dopado. Pauze no me deja esa sensación rara. Me duermo bien y me levanto fresco.", "name": "Mariana V.", "initial": "M" } },
+        { "type": "testimonial", "settings": { "title": "Mi cabeza por fin se apaga", "body": "Trabajo en turnos rotativos y nunca cortaba la cabeza al meterme en la cama. A los 4 días me dormí sin darme cuenta. Hace 3 semanas que duermo así.", "name": "Nicolás R.", "initial": "N" } },
+        { "type": "testimonial", "settings": { "title": "Es un ritual hermoso", "body": "Más allá del efecto, el ritual mismo me cambió la noche. Antes terminaba con el celular hasta las 2. Ahora a las 11 ya estoy durmiendo.", "name": "Camila P.", "initial": "C" } },
+        { "type": "testimonial", "settings": { "title": "Lo recomendó mi nutricionista", "body": "Me indicaba magnesio glicinato y L-teanina por separado. Cuando le mostré pauze me dijo que tenía dosis correctas.", "name": "Julián A.", "initial": "J" } },
+        { "type": "testimonial", "settings": { "title": "Estaba escéptico", "body": "Compré por la garantía de 14 noches. Si no me funcionaba, devolvía. No tuve que devolver nada. Voy por mi tercer pack.", "name": "Bruno T.", "initial": "B" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

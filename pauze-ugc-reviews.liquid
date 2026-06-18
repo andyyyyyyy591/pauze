@@ -1,0 +1,188 @@
+{% comment %}
+  PAUZE UGC REVIEWS — Réplica "Don't Just Take Our Word" de O Positiv URO
+  4 cards con foto del cliente + título corto + reseña + nombre + verified
+{% endcomment %}
+
+<section class="pauze-section pauze-section--off-white pauze-ugc" data-section-id="{{ section.id }}">
+  <div class="pauze-container">
+    <div class="pauze-section__header pauze-reveal">
+      <span class="pauze-eyebrow">{{ section.settings.eyebrow | default: 'UGC · CLIENTES REALES' }}</span>
+      <h2 class="pauze-h2">{{ section.settings.heading | default: 'No tomes solo nuestra palabra' }}</h2>
+    </div>
+
+    <div class="pauze-ugc__grid">
+      {% for block in section.blocks %}
+        <article class="pauze-ugc__card pauze-reveal" {{ block.shopify_attributes }}>
+          <div class="pauze-ugc__media">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.name }}" loading="lazy">
+            {% else %}
+              <div class="pauze-ugc__placeholder">
+                <span>{{ block.settings.initial | default: 'P' }}</span>
+                <small>[foto UGC]</small>
+              </div>
+            {% endif %}
+          </div>
+          <div class="pauze-ugc__body">
+            <h3 class="pauze-ugc__title">{{ block.settings.title }}</h3>
+            <div class="pauze-ugc__author">
+              <div class="pauze-ugc__avatar">{{ block.settings.initial | default: 'P' }}</div>
+              <div>
+                <strong>{{ block.settings.name }}</strong>
+                <div class="pauze-ugc__stars">★★★★★</div>
+              </div>
+            </div>
+            <span class="pauze-ugc__verified">✓ Compra verificada</span>
+            <p class="pauze-ugc__text">{{ block.settings.text }}</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-ugc__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 640px) { .pauze-ugc__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .pauze-ugc__grid { grid-template-columns: repeat(4, 1fr); } }
+
+.pauze-ugc__card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--pauze-arena);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+.pauze-ugc__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--pauze-shadow-md);
+  border-color: var(--pauze-verde-bright);
+}
+.pauze-ugc__media {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--pauze-arena), var(--pauze-beige));
+  overflow: hidden;
+  position: relative;
+}
+.pauze-ugc__media img { width: 100%; height: 100%; object-fit: cover; }
+.pauze-ugc__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  color: var(--pauze-cacao-light);
+}
+.pauze-ugc__placeholder span {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 4rem;
+  color: var(--pauze-cacao);
+  line-height: 1;
+}
+.pauze-ugc__placeholder small {
+  font-size: 0.7rem;
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.pauze-ugc__body { padding: 1.25rem 1.35rem 1.5rem; flex-grow: 1; }
+.pauze-ugc__title {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--pauze-cacao);
+  margin: 0 0 0.85rem;
+  line-height: 1.25;
+}
+.pauze-ugc__author {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.pauze-ugc__avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--pauze-verde-pale);
+  color: var(--pauze-verde-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+.pauze-ugc__author strong {
+  font-size: 0.85rem;
+  color: var(--pauze-cacao);
+  font-weight: 700;
+  display: block;
+}
+.pauze-ugc__stars {
+  color: var(--pauze-dorado);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+.pauze-ugc__verified {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--pauze-verde-dark);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.pauze-ugc__text {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--pauze-off-black);
+  margin: 0;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: UGC Reviews con foto",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "UGC · CLIENTES REALES" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "No tomes solo nuestra palabra" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "UGC review",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Foto del cliente (cuadrada)" },
+        { "type": "text", "id": "title", "label": "Título corto", "default": "Lo recomiendo mil veces" },
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Cliente verificado" },
+        { "type": "text", "id": "initial", "label": "Inicial (avatar)", "default": "P" },
+        { "type": "textarea", "id": "text", "label": "Texto reseña" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Pauze: UGC Reviews",
+      "blocks": [
+        { "type": "review", "settings": { "title": "Lo recomiendo mil veces", "name": "Mel", "initial": "M", "text": "Es mi tercer pack. Lo tomo todas las noches. Si no lo compraste, ¿qué estás esperando?" } },
+        { "type": "review", "settings": { "title": "10/10", "name": "Megan B.", "initial": "M", "text": "Lo amé. Hace lo que dice. Mi nueva rutina nocturna gracias a esto." } },
+        { "type": "review", "settings": { "title": "Feliz", "name": "Jeni R.", "initial": "J", "text": "Ni le conté a mi marido que estaba tomando algo. Él vio que dormía mejor y me preguntó qué hice diferente." } },
+        { "type": "review", "settings": { "title": "No te vas a arrepentir", "name": "Tipstarr", "initial": "T", "text": "Voy por el 3er pack. Me siento mucho mejor. Nunca dudo de mi descanso ahora." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

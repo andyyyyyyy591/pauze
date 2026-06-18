@@ -1,0 +1,245 @@
+{% comment %}
+  ============================================
+  PAUZE SCIENCE — "The Science Behind"
+  ============================================
+  Replica el bloque "The Science Behind URO" de O Positiv:
+  - H2 grande
+  - Video o placeholder
+  - 2 columnas: "El problema" / "Cómo te ayuda"
+  
+  USAR EN: PDP (después del bloque de compra)
+{% endcomment %}
+
+<section class="pauze-page pauze-section pauze-section--cacao pauze-science">
+  <div class="pauze-science__glow"></div>
+  <div class="pauze-container">
+    <div class="pauze-section__header pauze-reveal">
+      <span class="pauze-eyebrow pauze-eyebrow--gold">{{ section.settings.eyebrow | default: 'La ciencia detrás' }}</span>
+      <h2 class="pauze-h2">{{ section.settings.heading | default: 'Cómo Pauze trabaja en tu cuerpo' }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="pauze-section__sub">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.video_url != blank -%}
+      <div class="pauze-science__video pauze-reveal">
+        <video controls poster="{{ section.settings.video_poster | image_url: width: 1600 }}">
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        </video>
+      </div>
+    {%- else -%}
+      <div class="pauze-science__video-placeholder pauze-reveal">
+        <div class="pauze-science__play-btn">▶</div>
+        <p class="pauze-science__placeholder-text">[Video explicativo · 60-90 segundos · subimos cuando esté grabado]</p>
+      </div>
+    {%- endif -%}
+
+    <div class="pauze-science__cols pauze-reveal">
+      <div class="pauze-science__col">
+        <div class="pauze-science__col-num pauze-science__col-num--gold">01</div>
+        <h3 class="pauze-h3">{{ section.settings.col1_title | default: 'El problema' }}</h3>
+        <p>{{ section.settings.col1_text | default: 'Cuando tu día estuvo lleno de pantallas, decisiones y estímulos, tu sistema nervioso queda en modo alerta. El cortisol no baja, la mente no se apaga, y el cuerpo no entra en modo descanso aunque estés cansado/a.' }}</p>
+      </div>
+      <div class="pauze-science__divider">
+        <svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 0 10 L 100 10" stroke="#C9954E" stroke-width="2" stroke-dasharray="2,4"/>
+          <circle cx="50" cy="10" r="6" fill="#C9954E"/>
+        </svg>
+      </div>
+      <div class="pauze-science__col">
+        <div class="pauze-science__col-num pauze-science__col-num--green">02</div>
+        <h3 class="pauze-h3">{{ section.settings.col2_title | default: 'Cómo te ayuda' }}</h3>
+        <p>{{ section.settings.col2_text | default: 'Pauze combina L-teanina (que activa ondas alpha de relajación), apigenina (que se une a receptores GABA igual que la manzanilla) y magnesio glicinato (que relaja la musculatura). Tres activos clínicos, dosis honestas, sin melatonina.' }}</p>
+      </div>
+    </div>
+
+    {%- if section.settings.cta_text != blank -%}
+      <div class="pauze-text-center pauze-mt-4">
+        <a href="{{ section.settings.cta_link }}" class="pauze-btn pauze-btn--crema">{{ section.settings.cta_text }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+.pauze-science {
+  position: relative;
+  overflow: hidden;
+}
+.pauze-science__glow {
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(93, 170, 63, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.pauze-science__video {
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--pauze-shadow-lg);
+}
+.pauze-science__video video { display: block; width: 100%; }
+.pauze-science__video-placeholder {
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #4A3422 0%, #3D2C1F 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+.pauze-science__play-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--pauze-verde);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  padding-left: 0.4rem;
+  animation: pauze-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 0 20px rgba(59, 122, 44, 0.1);
+}
+.pauze-science__placeholder-text {
+  font-style: italic;
+  color: var(--pauze-beige);
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.pauze-science__cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 920px;
+  margin: 0 auto;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .pauze-science__cols {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2.5rem;
+  }
+}
+.pauze-science__col p {
+  color: var(--pauze-beige);
+  line-height: 1.7;
+  font-size: 0.98rem;
+  margin: 0.65rem 0 0;
+}
+.pauze-science__col-num {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.pauze-science__col-num--gold { color: var(--pauze-dorado); }
+.pauze-science__col-num--green { color: var(--pauze-verde-bright); }
+.pauze-science__divider {
+  display: flex;
+  justify-content: center;
+  opacity: 0.7;
+}
+@media (max-width: 767px) {
+  .pauze-science__divider { transform: rotate(90deg); }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: The Science Behind",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "La ciencia detrás"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título H2",
+      "default": "Cómo Pauze trabaja en tu cuerpo"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "URL del video (mp4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Poster del video"
+    },
+    {
+      "type": "header",
+      "content": "Columna 1: El problema"
+    },
+    {
+      "type": "text",
+      "id": "col1_title",
+      "label": "Título",
+      "default": "El problema"
+    },
+    {
+      "type": "textarea",
+      "id": "col1_text",
+      "label": "Texto",
+      "default": "Cuando tu día estuvo lleno de pantallas, decisiones y estímulos, tu sistema nervioso queda en modo alerta. El cortisol no baja, la mente no se apaga, y el cuerpo no entra en modo descanso aunque estés cansado/a."
+    },
+    {
+      "type": "header",
+      "content": "Columna 2: Cómo te ayuda"
+    },
+    {
+      "type": "text",
+      "id": "col2_title",
+      "label": "Título",
+      "default": "Cómo te ayuda"
+    },
+    {
+      "type": "textarea",
+      "id": "col2_text",
+      "label": "Texto",
+      "default": "Pauze combina L-teanina (que activa ondas alpha de relajación), apigenina (que se une a receptores GABA igual que la manzanilla) y magnesio glicinato (que relaja la musculatura). Tres activos clínicos, dosis honestas, sin melatonina."
+    },
+    {
+      "type": "header",
+      "content": "CTA opcional"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link CTA"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pauze: Science Behind"
+    }
+  ]
+}
+{% endschema %}

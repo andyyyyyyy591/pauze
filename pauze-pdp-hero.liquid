@@ -1,0 +1,300 @@
+{% comment %}
+  ============================================
+  PAUZE PDP HERO — Hero del producto
+  ============================================
+  Replica el hero URO de O Positiv:
+  - Texto a la izquierda (eyebrow + H1 + sub + CTA + stats)
+  - Imagen lifestyle a la derecha
+  - Trust badges abajo
+  
+  USAR EN: product.pauze.json (primera sección)
+{% endcomment %}
+
+<section class="pauze-page pauze-pdp-hero" 
+         style="background: linear-gradient(135deg, {{ section.settings.bg_from }} 0%, {{ section.settings.bg_to }} 100%);">
+  <div class="pauze-pdp-hero__glow"></div>
+  <div class="pauze-container pauze-pdp-hero__inner">
+    <div class="pauze-pdp-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="pauze-pdp-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      
+      <h1 class="pauze-pdp-hero__h1">{{ section.settings.h1 }}</h1>
+      
+      {%- if section.settings.claim != blank -%}
+        <p class="pauze-pdp-hero__claim">{{ section.settings.claim }}</p>
+      {%- endif -%}
+      
+      <div class="pauze-pdp-hero__ctas">
+        <a href="{{ section.settings.cta_link }}" class="pauze-btn pauze-btn--verde pauze-btn--lg">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+      
+      <div class="pauze-pdp-hero__stat-row">
+        <div class="pauze-pdp-hero__stat">
+          <span class="pauze-pdp-hero__stat-icon">🔥</span>
+          <span>
+            <strong>{{ section.settings.stat_1_top }}</strong><br>
+            <small>{{ section.settings.stat_1_bottom }}</small>
+          </span>
+        </div>
+        <div class="pauze-pdp-hero__rank">
+          <span class="pauze-pdp-hero__rank-num">#1</span>
+          <span class="pauze-pdp-hero__rank-text">
+            {{ section.settings.rank_text }}
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="pauze-pdp-hero__media">
+      {%- if section.settings.image != blank -%}
+        <img src="{{ section.settings.image | image_url: width: 800 }}" 
+             alt="{{ section.settings.image.alt | default: 'Pauze Cocoa' }}" 
+             width="600" height="800"
+             loading="eager">
+      {%- else -%}
+        <div class="pauze-pdp-hero__placeholder">
+          {% render 'pauze-doypack', size: 'xlarge' %}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-pdp-hero {
+  position: relative;
+  color: var(--pauze-crema);
+  padding: 3rem 0 3.5rem;
+  overflow: hidden;
+}
+@media (min-width: 900px) {
+  .pauze-pdp-hero { padding: 4.5rem 0 5rem; }
+}
+.pauze-pdp-hero__glow {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 80% 30%, rgba(201, 149, 78, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 20% 70%, rgba(93, 170, 63, 0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.pauze-pdp-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .pauze-pdp-hero__inner {
+    grid-template-columns: 1.05fr 1fr;
+    gap: 3rem;
+  }
+}
+.pauze-pdp-hero__content { order: 2; }
+.pauze-pdp-hero__media {
+  order: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .pauze-pdp-hero__content { order: 1; }
+  .pauze-pdp-hero__media { order: 2; }
+}
+.pauze-pdp-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(93, 170, 63, 0.2);
+  color: #B5DA8F;
+  border: 1px solid rgba(93, 170, 63, 0.45);
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--pauze-radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+.pauze-pdp-hero__eyebrow::before {
+  content: '●';
+  color: var(--pauze-verde-bright);
+}
+.pauze-pdp-hero__h1 {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2.3rem, 6vw, 4rem);
+  line-height: 1.05;
+  color: var(--pauze-crema);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+.pauze-pdp-hero__claim {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--pauze-crema);
+  opacity: 0.92;
+  max-width: 500px;
+  margin: 0 0 1.75rem;
+}
+.pauze-pdp-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+.pauze-pdp-hero__stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  align-items: center;
+}
+.pauze-pdp-hero__stat {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+  color: var(--pauze-crema);
+}
+.pauze-pdp-hero__stat-icon { font-size: 1.4rem; }
+.pauze-pdp-hero__stat strong { font-weight: 700; }
+.pauze-pdp-hero__stat small {
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+.pauze-pdp-hero__rank {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: rgba(246, 241, 233, 0.08);
+  border: 1px solid rgba(246, 241, 233, 0.18);
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+}
+.pauze-pdp-hero__rank-num {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--pauze-dorado);
+  line-height: 1;
+}
+.pauze-pdp-hero__rank-text {
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: var(--pauze-crema);
+  opacity: 0.95;
+}
+.pauze-pdp-hero__placeholder { width: 100%; max-width: 460px; }
+.pauze-pdp-hero__media img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+}
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: PDP Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Texto"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Chocolatada funcional · PM Blend"
+    },
+    {
+      "type": "text",
+      "id": "h1",
+      "label": "Titular H1",
+      "default": "Apagá la noche. Hacé tu pausa."
+    },
+    {
+      "type": "textarea",
+      "id": "claim",
+      "label": "Claim",
+      "default": "Un postre nocturno con activos clínicos. L-teanina, apigenina y magnesio. Sin pastillas, sin azúcar, sin resaca."
+    },
+    {
+      "type": "header",
+      "content": "CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA",
+      "default": "COMPRAR AHORA →"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link",
+      "default": "/products/pauze-cocoa"
+    },
+    {
+      "type": "header",
+      "content": "Stats"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_top",
+      "label": "Stat 1 (línea 1)",
+      "default": "+340 personas"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_bottom",
+      "label": "Stat 1 (línea 2)",
+      "default": "ya hicieron su pausa"
+    },
+    {
+      "type": "text",
+      "id": "rank_text",
+      "label": "Ranking",
+      "default": "Best-seller PM Blend Argentina 2026"
+    },
+    {
+      "type": "header",
+      "content": "Imagen"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen lifestyle (1200x1600px JPG, lado derecho)"
+    },
+    {
+      "type": "header",
+      "content": "Fondo"
+    },
+    {
+      "type": "color",
+      "id": "bg_from",
+      "label": "Color desde",
+      "default": "#5A3E2B"
+    },
+    {
+      "type": "color",
+      "id": "bg_to",
+      "label": "Color hasta",
+      "default": "#8B6A52"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pauze: PDP Hero"
+    }
+  ]
+}
+{% endschema %}

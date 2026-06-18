@@ -1,0 +1,69 @@
+{
+  "sections": {
+    "announcement": {
+      "type": "pauze-announcement-bar",
+      "blocks": {
+        "m1": { "type": "message", "settings": { "icon": "🎉", "text": "10% OFF tu primera compra · CÓDIGO PAUZE10" } },
+        "m2": { "type": "message", "settings": { "icon": "🚚", "text": "Envío gratis desde $39.900" } },
+        "m3": { "type": "message", "settings": { "icon": "🛡️", "text": "Garantía 14 noches sin devolver el pack" } }
+      },
+      "block_order": ["m1", "m2", "m3"]
+    },
+    "header": {
+      "type": "pauze-header",
+      "blocks": {
+        "n1": { "type": "nav_link", "settings": { "text": "Comprar", "link": "/products/pauze-cocoa" } },
+        "n2": { "type": "nav_link", "settings": { "text": "Ingredientes", "link": "/pages/ingredientes" } },
+        "n3": { "type": "nav_link", "settings": { "text": "Cómo funciona", "link": "/pages/ciencia" } },
+        "n4": { "type": "nav_link", "settings": { "text": "Blog", "link": "/blogs/ritual" } }
+      },
+      "block_order": ["n1", "n2", "n3", "n4"]
+    },
+    "faq-main": {
+      "type": "pauze-faq",
+      "settings": {
+        "bg_color": "#FAFAF8",
+        "eyebrow": "Preguntas frecuentes",
+        "heading": "Todo lo que querés saber",
+        "subheading": "Si tu pregunta no está acá, escribinos. Respondemos en menos de 24hs hábiles.",
+        "contact_email": "contacto@pauze.store"
+      },
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "tab": "producto", "question": "¿Tiene melatonina?", "answer": "<p>No. La melatonina en Argentina se considera medicamento. Pauze usa activos botánicos y aminoácidos (L-teanina, apigenina, magnesio glicinato) que ayudan a tu cuerpo a producir su propia melatonina naturalmente.</p>" } },
+        "f2": { "type": "faq", "settings": { "tab": "producto", "question": "¿Cuándo tomarlo?", "answer": "<p>Entre 30 y 45 minutos antes de acostarte. Lo ideal: que sea un ritual repetido todas las noches a la misma hora.</p>" } },
+        "f3": { "type": "faq", "settings": { "tab": "producto", "question": "¿Tiene azúcar?", "answer": "<p>No. Pauze está endulzado con eritritol y stevia. Una taza tiene menos de 1g de carbohidratos digestibles.</p>" } },
+        "f4": { "type": "faq", "settings": { "tab": "producto", "question": "¿Es seguro tomarlo todas las noches?", "answer": "<p>Sí. Está formulado para uso diario. Si tomás medicación o tenés alguna condición, consultá con tu médico antes.</p>" } },
+        "f5": { "type": "faq", "settings": { "tab": "producto", "question": "¿En cuánto tiempo voy a notar la diferencia?", "answer": "<p>La mayoría nota mejoría en la primera semana. Los efectos profundos se ven a las 3 semanas de uso consistente.</p>" } },
+        "f6": { "type": "faq", "settings": { "tab": "producto", "question": "¿Cómo se prepara?", "answer": "<p>Calentá 200ml de leche (vaca/almendra/avena). Sumá un scoop (10g). Batí 30 segundos. Listo.</p>" } },
+        "f7": { "type": "faq", "settings": { "tab": "producto", "question": "¿Apto vegano?", "answer": "<p>Sí. Pauze es 100% vegano. Sin lactosa, sin gluten, sin soja, sin huevo.</p>" } },
+        "f8": { "type": "faq", "settings": { "tab": "producto", "question": "¿Apto durante embarazo o lactancia?", "answer": "<p>No recomendamos su uso durante embarazo, lactancia ni en menores de 18 años. Consultá con tu médico.</p>" } },
+        "f9": { "type": "faq", "settings": { "tab": "producto", "question": "¿Genera dependencia?", "answer": "<p>No. Los activos de Pauze no generan dependencia ni tolerancia. Lo podés tomar y dejar de tomar sin síntomas.</p>" } },
+        "f10": { "type": "faq", "settings": { "tab": "envios", "question": "¿Cuánto tarda el envío?", "answer": "<p>Despachamos en 7 a 15 días hábiles desde tu compra. CABA/GBA suele tardar menos, interior puede llegar a los 15 días.</p>" } },
+        "f11": { "type": "faq", "settings": { "tab": "envios", "question": "¿Cuánto cuesta el envío?", "answer": "<p>Envío gratis a partir de $39.900. Por debajo de ese monto: entre $3.500 y $7.500 según código postal.</p>" } },
+        "f12": { "type": "faq", "settings": { "tab": "envios", "question": "¿Envían a todo el país?", "answer": "<p>Sí. Trabajamos con Andreani y Correo Argentino. Enviamos a todas las provincias.</p>" } },
+        "f13": { "type": "faq", "settings": { "tab": "envios", "question": "¿Hacen envío prioritario?", "answer": "<p>Por ahora no. Estamos en proceso de optimización logística para sumarlo en los próximos meses.</p>" } },
+        "f14": { "type": "faq", "settings": { "tab": "envios", "question": "¿Puedo rastrear mi pedido?", "answer": "<p>Sí. Cuando despachamos te llega un email con el código de seguimiento de Andreani o Correo Argentino.</p>" } },
+        "f15": { "type": "faq", "settings": { "tab": "envios", "question": "¿Y si no estoy cuando llega?", "answer": "<p>Andreani te avisa por SMS y reintenta una vez. Si no, lo retirás de la sucursal más cercana. Correo Argentino directamente lo deja en la sucursal.</p>" } },
+        "f16": { "type": "faq", "settings": { "tab": "suscripcion", "question": "¿Cómo funciona la suscripción?", "answer": "<p>Te llega un pack todos los meses, con 20% off siempre, envío gratis incluido y la guía PDF \"30 noches de ritual\" gratis. Cancelás cuando quieras.</p>" } },
+        "f17": { "type": "faq", "settings": { "tab": "suscripcion", "question": "¿Puedo cancelar cuando quiera?", "answer": "<p>Sí. Sin permanencia, sin letra chica. Desde tu cuenta en un click, o mandando un email.</p>" } },
+        "f18": { "type": "faq", "settings": { "tab": "suscripcion", "question": "¿Puedo pausar la suscripción?", "answer": "<p>Sí. Podés pausar 1 o 2 meses cuando quieras. Cuando reactivás, vuelve a llegar automáticamente.</p>" } },
+        "f19": { "type": "faq", "settings": { "tab": "suscripcion", "question": "¿Cuándo me cobran?", "answer": "<p>Te cobramos al despachar cada pack, no al inscribirte. Si pausás antes del próximo envío, no se cobra nada.</p>" } },
+        "f20": { "type": "faq", "settings": { "tab": "suscripcion", "question": "¿La garantía aplica a la suscripción?", "answer": "<p>Sí. Tu primer pack viene con la garantía de 14 noches. Si no te funciona, te devolvemos el dinero como crédito y cancelás la suscripción sin problemas.</p>" } }
+      },
+      "block_order": ["f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13","f14","f15","f16","f17","f18","f19","f20"]
+    },
+    "bundle-banner": {
+      "type": "pauze-bundle-banner",
+      "settings": {
+        "tag": "¿LISTO PARA EMPEZAR?",
+        "title": "Probalo con la",
+        "highlight": "garantía de 14 noches",
+        "sub": "Si no te funciona, te devolvemos el dinero como crédito. Sin devolver el pack.",
+        "cta": "COMPRAR · $39.900",
+        "cta_url": "/products/pauze-cocoa"
+      }
+    },
+    "footer": { "type": "pauze-footer" }
+  },
+  "order": ["announcement", "header", "faq-main", "bundle-banner", "footer"]
+}

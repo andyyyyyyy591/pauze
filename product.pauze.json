@@ -1,0 +1,209 @@
+{
+  "_comment": "PAUZE PDP — 22 secciones replicando O Positiv URO PDP",
+  "sections": {
+    "header": {
+      "type": "pauze-header",
+      "blocks": {
+        "nav-1": { "type": "nav_link", "settings": { "text": "Comprar", "link": "/products/pauze-cocoa" } },
+        "nav-2": { "type": "nav_link", "settings": { "text": "Ingredientes", "link": "/pages/ingredientes" } },
+        "nav-3": { "type": "nav_link", "settings": { "text": "Cómo funciona", "link": "/pages/ciencia" } },
+        "nav-4": { "type": "nav_link", "settings": { "text": "Reseñas", "link": "#reviews" } },
+        "nav-5": { "type": "nav_link", "settings": { "text": "Blog", "link": "/blogs/ritual" } }
+      },
+      "block_order": ["nav-1", "nav-2", "nav-3", "nav-4", "nav-5"]
+    },
+    "announcement": {
+      "type": "pauze-announcement-bar",
+      "blocks": {
+        "msg-1": { "type": "message", "settings": { "icon": "🎉", "text": "10% OFF tu primera compra · CÓDIGO PAUZE10" } },
+        "msg-2": { "type": "message", "settings": { "icon": "🚚", "text": "Envío gratis desde $39.900" } },
+        "msg-3": { "type": "message", "settings": { "icon": "💳", "text": "12 cuotas sin interés con Mercado Pago" } },
+        "msg-4": { "type": "message", "settings": { "icon": "🛡️", "text": "Garantía 14 noches sin devolver el pack" } }
+      },
+      "block_order": ["msg-1", "msg-2", "msg-3", "msg-4"]
+    },
+    "pdp-hero": {
+      "type": "pauze-pdp-hero",
+      "settings": {
+        "eyebrow": "Chocolatada funcional · PM Blend",
+        "h1": "Apagá la noche. Hacé tu pausa.",
+        "claim": "Un postre nocturno con activos clínicos. L-teanina, apigenina y magnesio. Sin pastillas, sin azúcar, sin resaca.",
+        "cta_text": "COMPRAR AHORA →",
+        "cta_link": "#purchase",
+        "stat_1_top": "+340 personas",
+        "stat_1_bottom": "ya hicieron su pausa",
+        "rank_text": "Best-seller PM Blend Argentina 2026",
+        "bg_from": "#5A3E2B",
+        "bg_to": "#2E1F14"
+      }
+    },
+    "helps-with-pdp": {
+      "type": "pauze-helps-with",
+      "settings": {
+        "bg_color": "#F6F1E9",
+        "eyebrow": "Te ayuda con",
+        "heading": "Tu ritual nocturno con un solo scoop",
+        "cta_text": "AGREGAR AL CARRITO",
+        "cta_link": "#purchase"
+      },
+      "blocks": {
+        "h-1": { "type": "icon", "settings": { "icon": "🌙", "icon_bg": "#DBE8CC", "label": "DORMIR", "description": "Activos para acompañar al sueño" } },
+        "h-2": { "type": "icon", "settings": { "icon": "🧠", "icon_bg": "#F5E5C9", "label": "MENTE ACELERADA", "description": "Aflojá la cabeza naturalmente" } },
+        "h-3": { "type": "icon", "settings": { "icon": "🍫", "icon_bg": "#E6D8C8", "label": "POSTRE SANO", "description": "Reemplazo del alfajor de las 11" } },
+        "h-4": { "type": "icon", "settings": { "icon": "🌅", "icon_bg": "#FAE5D3", "label": "SIN RESACA", "description": "Te levantás claro/a y descansado/a" } }
+      },
+      "block_order": ["h-1", "h-2", "h-3", "h-4"]
+    },
+    "testimonials-pdp": {
+      "type": "pauze-testimonials",
+      "settings": {
+        "bg_color": "#FAFAF8",
+        "eyebrow": "+340 reseñas verificadas",
+        "heading": "Lo que cuenta gente que duerme mejor"
+      },
+      "blocks": {
+        "t-1": { "type": "testimonial", "settings": { "title": "Por fin dejé el alfajor de las 11", "body": "Hace dos meses lo tomo todas las noches. Cambié el alfajor por algo que me hace bien.", "name": "Martín G.", "initial": "M" } },
+        "t-2": { "type": "testimonial", "settings": { "title": "Sin resaca al despertar", "body": "Probé melatonina por meses y siempre me levantaba dopado. Pauze no me deja esa sensación rara.", "name": "Mariana V.", "initial": "M" } },
+        "t-3": { "type": "testimonial", "settings": { "title": "Mi cabeza por fin se apaga", "body": "Trabajo en turnos rotativos. A los 4 días me dormí sin darme cuenta.", "name": "Nicolás R.", "initial": "N" } }
+      },
+      "block_order": ["t-1", "t-2", "t-3"]
+    },
+    "purchase-block": { "type": "pauze-purchase-block", "settings": {} },
+    "exclusive-offer": {
+      "type": "pauze-exclusive-offer-banner",
+      "settings": {
+        "tag": "OFERTA EXCLUSIVA",
+        "title": "Pack x3 + Frother eléctrico",
+        "sub": "Tu kit completo para arrancar el ritual nocturno",
+        "compare_price": "124.600",
+        "final_price": "109.900",
+        "cta1": "SUSCRIBIRME · $87.900",
+        "cta2": "COMPRAR UNA VEZ · $109.900"
+      }
+    },
+    "science": {
+      "type": "pauze-science",
+      "settings": {
+        "eyebrow": "La ciencia detrás",
+        "heading": "Cómo Pauze trabaja en tu cuerpo",
+        "col1_title": "El problema",
+        "col1_text": "Cuando tu día estuvo lleno de pantallas, decisiones y estímulos, tu sistema nervioso queda en modo alerta. El cortisol no baja, la mente no se apaga, y el cuerpo no entra en modo descanso aunque estés cansado/a.",
+        "col2_title": "Cómo te ayuda",
+        "col2_text": "Pauze combina L-teanina (que activa ondas alpha de relajación), apigenina (que se une a receptores GABA igual que la manzanilla) y magnesio glicinato (que relaja la musculatura). Tres activos clínicos, dosis honestas, sin melatonina."
+      }
+    },
+    "ingredients": {
+      "type": "pauze-ingredients",
+      "settings": {
+        "eyebrow": "Activos clínicos",
+        "heading": "Cantidades honestas, no proprietary blend",
+        "subheading": "Las cantidades de cada activo en el frente del pack. Sin blends ni números mágicos escondidos."
+      },
+      "blocks": {
+        "ing-1": { "type": "ingredient", "settings": { "icon": "🍃", "dose": "200mg", "name": "L-teanina", "tag": "Aminoácido del té verde", "description": "La L-teanina activa ondas alpha en el cerebro — el patrón asociado a la relajación atenta. Te calma sin sedarte. La dosis terapéutica empieza en 200mg.", "evidence": "Nobre et al., 2008. Asia Pacific Journal of Clinical Nutrition." } },
+        "ing-2": { "type": "ingredient", "settings": { "icon": "🌼", "dose": "50mg", "name": "Apigenina", "tag": "Extracto de manzanilla", "description": "La apigenina se une a los receptores GABA de tu cerebro — los mismos que activan los ansiolíticos pero de forma suave y natural. Es el ingrediente activo de la manzanilla, concentrado.", "evidence": "Salehi et al., 2019. The therapeutic potential of apigenin. Phytomedicine." } },
+        "ing-3": { "type": "ingredient", "settings": { "icon": "💎", "dose": "300mg", "name": "Magnesio glicinato", "tag": "La forma más absorbible", "description": "El magnesio glicinato es la forma con mejor absorción y menos efecto laxante. Relaja la musculatura, regula el cortisol y participa en la síntesis de melatonina natural en tu cuerpo.", "evidence": "Abbasi et al., 2012. Journal of Research in Medical Sciences." } }
+      },
+      "block_order": ["ing-1", "ing-2", "ing-3"]
+    },
+    "ugc-reviews": {
+      "type": "pauze-ugc-reviews",
+      "settings": {
+        "eyebrow": "UGC · CLIENTES REALES",
+        "heading": "No tomes solo nuestra palabra"
+      },
+      "blocks": {
+        "u-1": { "type": "review", "settings": { "title": "Lo recomiendo mil veces", "name": "Mel", "initial": "M", "text": "Es mi tercer pack. Lo tomo todas las noches. Si no lo compraste, ¿qué estás esperando?" } },
+        "u-2": { "type": "review", "settings": { "title": "10/10", "name": "Megan B.", "initial": "M", "text": "Lo amé. Hace lo que dice. Mi nueva rutina nocturna gracias a esto." } },
+        "u-3": { "type": "review", "settings": { "title": "Feliz", "name": "Jeni R.", "initial": "J", "text": "Ni le conté a mi marido que estaba tomando algo. Él vio que dormía mejor y me preguntó qué hice diferente." } },
+        "u-4": { "type": "review", "settings": { "title": "No te vas a arrepentir", "name": "Tipstarr", "initial": "T", "text": "Voy por el 3er pack. Me siento mucho mejor. Nunca dudo de mi descanso ahora." } }
+      },
+      "block_order": ["u-1", "u-2", "u-3", "u-4"]
+    },
+    "acordeones-pdp": {
+      "type": "pauze-acordeones-pdp",
+      "blocks": {
+        "a-1": { "type": "acord", "settings": { "title": "¿Es para mí?", "open_by_default": true, "content": "<p>Si te identificás con alguna de estas, Pauze es para vos:</p><ul><li>Tenés la cabeza acelerada al meterte en la cama</li><li>Caés en el alfajor o la galletita de las 11 de la noche</li><li>Te despertás varias veces y no volvés a dormir bien</li><li>Probaste melatonina pero te levantás dopado/a</li><li>Querés un ritual nocturno saludable</li><li>Tenés trabajo de turnos rotativos o jet lag</li></ul>" } },
+        "a-2": { "type": "acord", "settings": { "title": "Beneficios", "content": "<p>Activos clínicos que ayudan a:</p><ul><li>Conciliar el sueño más rápido</li><li>Bajar la rumiación mental</li><li>Relajar la musculatura</li><li>Reemplazar el postre dulce nocturno por algo saludable</li><li>Despertarte sin embotamiento</li></ul>" } },
+        "a-3": { "type": "acord", "settings": { "title": "Cómo se prepara", "content": "<p><strong>Es muy simple:</strong></p><ul><li>Calentá 200ml de leche (vaca, almendra, avena, la que prefieras)</li><li>Sumá un scoop a la taza</li><li>Batí 30 segundos con cuchara, frother o licuadora</li><li>Tomalo 30 a 45 minutos antes de meterte en la cama</li></ul><p><strong>Pro tip:</strong> tomate ese tiempo. Apartá pantallas. Es parte del ritual.</p>" } },
+        "a-4": { "type": "acord", "settings": { "title": "Información nutricional", "content": "<p><strong>Por porción (10g · 1 scoop):</strong></p><ul><li>Valor energético: 28 kcal</li><li>Carbohidratos digestibles: menos de 1g</li><li>Proteínas: 0.8g</li><li>Grasas: 0g</li><li>Sodio: 5mg</li><li>Cacao alcalinizado: 4g</li></ul><p><strong>Activos por porción:</strong></p><ul><li>L-teanina: 200mg</li><li>Apigenina (extracto manzanilla): 50mg</li><li>Magnesio glicinato: 300mg</li></ul><p><strong>Edulcorantes:</strong> eritritol, glucósidos de esteviol (stevia).</p><p><strong>NO contiene:</strong> melatonina, azúcar agregada, gluten, soja, lactosa, sucralosa, aspartamo, edulcorantes artificiales.</p><p>Suplemento dietario. No es un medicamento. RNPA en trámite.</p>" } }
+      },
+      "block_order": ["a-1", "a-2", "a-3", "a-4"]
+    },
+    "press": {
+      "type": "pauze-press-logos",
+      "settings": { "eyebrow": "Próximamente en medios" },
+      "blocks": {
+        "l-1": { "type": "logo", "settings": { "name": "Tu medio" } },
+        "l-2": { "type": "logo", "settings": { "name": "Tu medio" } },
+        "l-3": { "type": "logo", "settings": { "name": "Tu medio" } },
+        "l-4": { "type": "logo", "settings": { "name": "Tu medio" } },
+        "l-5": { "type": "logo", "settings": { "name": "Tu medio" } }
+      },
+      "block_order": ["l-1", "l-2", "l-3", "l-4", "l-5"]
+    },
+    "related-carousel": { "type": "pauze-related-carousel" },
+    "customer-reviews": { "type": "pauze-customer-reviews" },
+    "faq-pdp": {
+      "type": "pauze-faq",
+      "settings": {
+        "bg_color": "#F6F1E9",
+        "eyebrow": "Preguntas frecuentes",
+        "heading": "Lo que más nos preguntan",
+        "contact_email": "contacto@pauze.store"
+      },
+      "blocks": {
+        "f-1": { "type": "faq", "settings": { "tab": "producto", "question": "¿Tiene melatonina?", "answer": "<p>No. La melatonina en Argentina se considera medicamento. Pauze usa activos botánicos y aminoácidos que ayudan a tu cuerpo a producir su propia melatonina naturalmente.</p>" } },
+        "f-2": { "type": "faq", "settings": { "tab": "producto", "question": "¿Cuándo lo tengo que tomar?", "answer": "<p>Entre 30 y 45 minutos antes de meterte en la cama. Lo ideal es que sea parte de un ritual repetido todas las noches.</p>" } },
+        "f-3": { "type": "faq", "settings": { "tab": "producto", "question": "¿Tiene azúcar?", "answer": "<p>No. Pauze está endulzado con eritritol y stevia. Una taza tiene menos de 1g de carbohidratos digestibles.</p>" } },
+        "f-4": { "type": "faq", "settings": { "tab": "producto", "question": "¿En cuánto tiempo voy a notar la diferencia?", "answer": "<p>La mayoría nota mejoría en la primera semana. Los efectos profundos se ven a las 3 semanas de uso consistente.</p>" } },
+        "f-5": { "type": "faq", "settings": { "tab": "producto", "question": "¿Cómo se prepara?", "answer": "<p>Calentá 200ml de la leche que prefieras. Sumá un scoop (10g) directo a la taza. Batí 30 segundos. Listo.</p>" } },
+        "f-6": { "type": "faq", "settings": { "tab": "envios", "question": "¿Cuánto tarda el envío?", "answer": "<p>Despachamos en 7 a 15 días hábiles. Enviamos a todo el país con Andreani y Correo Argentino.</p>" } },
+        "f-7": { "type": "faq", "settings": { "tab": "envios", "question": "¿Cuánto cuesta el envío?", "answer": "<p>Envío gratis a partir de $39.900. Por debajo, el envío es a cargo del comprador.</p>" } },
+        "f-8": { "type": "faq", "settings": { "tab": "envios", "question": "¿Puedo rastrear mi pedido?", "answer": "<p>Sí. Te llega un email con el código de seguimiento al despachar.</p>" } },
+        "f-9": { "type": "faq", "settings": { "tab": "suscripcion", "question": "¿Cómo funciona la suscripción?", "answer": "<p>Te llega un pack todos los meses con 20% off, envío gratis y la guía PDF gratis. Cancelás cuando quieras.</p>" } },
+        "f-10": { "type": "faq", "settings": { "tab": "suscripcion", "question": "¿Puedo cancelar cuando quiera?", "answer": "<p>Sí. Sin permanencia. Lo cancelás desde tu cuenta o nos escribís a contacto@pauze.store.</p>" } },
+        "f-11": { "type": "faq", "settings": { "tab": "suscripcion", "question": "¿Y si no me funciona?", "answer": "<p>Tenés 14 noches de garantía. Si no notás la diferencia, te devolvemos el dinero como crédito en la tienda. Sin devolver el pack.</p>" } }
+      },
+      "block_order": ["f-1", "f-2", "f-3", "f-4", "f-5", "f-6", "f-7", "f-8", "f-9", "f-10", "f-11"]
+    },
+    "blog-cards-pdp": {
+      "type": "pauze-blog-cards",
+      "settings": {
+        "eyebrow": "TU RITUAL NOCTURNO",
+        "heading": "Aprendé más en el blog",
+        "cta_url": "/blogs/ritual"
+      },
+      "blocks": {
+        "bp-1": { "type": "post", "settings": { "placeholder_color": "#3D2C1F", "emoji": "🌙", "category": "Sueño", "title": "Por qué dormimos peor a partir de los 30", "excerpt": "El cortisol, las pantallas y la rumiación nocturna.", "url": "/blogs/ritual/por-que-dormimos-peor-a-partir-de-los-30" } },
+        "bp-2": { "type": "post", "settings": { "placeholder_color": "#A03A2C", "emoji": "💊", "category": "Mito vs Ciencia", "title": "El mito de la melatonina", "excerpt": "Por qué la melatonina no es una pastilla mágica.", "url": "/blogs/ritual/el-mito-de-la-melatonina" } },
+        "bp-3": { "type": "post", "settings": { "placeholder_color": "#B85C28", "emoji": "🍫", "category": "Comportamiento", "title": "Antojo dulce nocturno", "excerpt": "El alfajor de las 11 no es debilidad. Es biología.", "url": "/blogs/ritual/antojo-dulce-nocturno" } }
+      },
+      "block_order": ["bp-1", "bp-2", "bp-3"]
+    },
+    "sticky-atc": { "type": "pauze-sticky-atc-mobile" },
+    "popup": { "type": "pauze-newsletter-popup" },
+    "footer": { "type": "pauze-footer" }
+  },
+  "order": [
+    "announcement",
+    "header",
+    "pdp-hero",
+    "helps-with-pdp",
+    "testimonials-pdp",
+    "purchase-block",
+    "exclusive-offer",
+    "science",
+    "ingredients",
+    "ugc-reviews",
+    "acordeones-pdp",
+    "press",
+    "related-carousel",
+    "customer-reviews",
+    "faq-pdp",
+    "blog-cards-pdp",
+    "sticky-atc",
+    "popup",
+    "footer"
+  ]
+}

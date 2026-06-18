@@ -1,0 +1,287 @@
+{% comment %}
+  PAUZE CUSTOMER REVIEWS — Réplica del módulo "Customer Reviews" de O Positiv URO
+  Rating breakdown + filtros + search + lista paginada
+  IMPORTANTE: Esta es la versión "estática" hasta integrar Loox/Judge.me (fase 2)
+{% endcomment %}
+
+<section class="pauze-section pauze-section--off-white pauze-customer-reviews" data-section-id="{{ section.id }}" id="reviews">
+  <div class="pauze-container">
+    <div class="pauze-customer-reviews__layout">
+
+      <aside class="pauze-customer-reviews__sidebar">
+        <span class="pauze-eyebrow">RESEÑAS DE CLIENTES</span>
+        <h2 class="pauze-customer-reviews__rating-num">4.9</h2>
+        <div class="pauze-customer-reviews__stars">★★★★★</div>
+        <p class="pauze-customer-reviews__total">Basado en <strong>+340 reseñas verificadas</strong></p>
+
+        <div class="pauze-customer-reviews__bars">
+          {% assign distribution = '78,18,3,1,0' | split: ',' %}
+          {% for pct in distribution %}
+            {% assign star_num = 5 | minus: forloop.index0 %}
+            <div class="pauze-customer-reviews__bar-row">
+              <span class="pauze-customer-reviews__bar-label">{{ star_num }} ★</span>
+              <div class="pauze-customer-reviews__bar-track">
+                <div class="pauze-customer-reviews__bar-fill" style="width: {{ pct }}%;"></div>
+              </div>
+              <span class="pauze-customer-reviews__bar-pct">{{ pct }}%</span>
+            </div>
+          {% endfor %}
+        </div>
+
+        <a href="/pages/contacto" class="pauze-btn pauze-btn--outline-cacao pauze-btn--block">
+          ESCRIBIR UNA RESEÑA →
+        </a>
+
+        <div class="pauze-customer-reviews__search-wrap">
+          <input type="search" class="pauze-input" placeholder="Buscar reseñas..." />
+        </div>
+      </aside>
+
+      <div class="pauze-customer-reviews__list">
+        {% for block in section.blocks %}
+          <article class="pauze-customer-reviews__item" {{ block.shopify_attributes }}>
+            <div class="pauze-customer-reviews__item-head">
+              <div class="pauze-customer-reviews__avatar">{{ block.settings.initial | default: 'P' }}</div>
+              <div>
+                <strong>{{ block.settings.name }}</strong>
+                <span class="pauze-customer-reviews__verified-tag">
+                  <span class="pauze-customer-reviews__check">✓</span>
+                  Compra verificada
+                </span>
+              </div>
+              <span class="pauze-customer-reviews__date">{{ block.settings.date | default: 'junio 2026' }}</span>
+            </div>
+            <div class="pauze-customer-reviews__item-stars">★★★★★</div>
+            <h3 class="pauze-customer-reviews__item-title">{{ block.settings.title }}</h3>
+            <p class="pauze-customer-reviews__item-text">{{ block.settings.text }}</p>
+          </article>
+        {% endfor %}
+
+        <div class="pauze-customer-reviews__pagination">
+          <button class="pauze-customer-reviews__page pauze-customer-reviews__page--active">1</button>
+          <button class="pauze-customer-reviews__page">2</button>
+          <button class="pauze-customer-reviews__page">3</button>
+          <button class="pauze-customer-reviews__page">4</button>
+          <button class="pauze-customer-reviews__page">5</button>
+          <span class="pauze-customer-reviews__page-dots">...</span>
+          <button class="pauze-customer-reviews__page">Siguiente →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.pauze-customer-reviews__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 900px) {
+  .pauze-customer-reviews__layout {
+    grid-template-columns: 320px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .pauze-customer-reviews__sidebar { position: sticky; top: 90px; }
+}
+
+/* SIDEBAR */
+.pauze-customer-reviews__rating-num {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 4.5rem;
+  color: var(--pauze-cacao);
+  line-height: 1;
+  margin: 0.4rem 0 0.25rem;
+}
+.pauze-customer-reviews__stars {
+  color: var(--pauze-dorado);
+  font-size: 1.35rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+.pauze-customer-reviews__total {
+  color: var(--pauze-gris-dark);
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+.pauze-customer-reviews__total strong { color: var(--pauze-cacao); }
+
+.pauze-customer-reviews__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.pauze-customer-reviews__bar-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  gap: 0.65rem;
+  align-items: center;
+  font-size: 0.78rem;
+}
+.pauze-customer-reviews__bar-label { color: var(--pauze-cacao); font-weight: 600; }
+.pauze-customer-reviews__bar-track {
+  height: 8px;
+  background: var(--pauze-arena);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.pauze-customer-reviews__bar-fill {
+  height: 100%;
+  background: var(--pauze-dorado);
+  border-radius: 4px;
+}
+.pauze-customer-reviews__bar-pct { color: var(--pauze-gris-dark); text-align: right; }
+
+.pauze-customer-reviews__search-wrap { margin-top: 1.25rem; }
+
+/* LIST */
+.pauze-customer-reviews__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.pauze-customer-reviews__item {
+  background: white;
+  padding: 1.65rem;
+  border-radius: 14px;
+  border: 1px solid var(--pauze-arena);
+}
+.pauze-customer-reviews__item-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+.pauze-customer-reviews__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--pauze-verde-pale);
+  color: var(--pauze-verde-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.pauze-customer-reviews__item-head strong {
+  font-size: 0.92rem;
+  color: var(--pauze-cacao);
+  display: block;
+}
+.pauze-customer-reviews__verified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  color: var(--pauze-verde-dark);
+}
+.pauze-customer-reviews__check {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--pauze-verde);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 700;
+}
+.pauze-customer-reviews__date {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: var(--pauze-gris-dark);
+}
+.pauze-customer-reviews__item-stars {
+  color: var(--pauze-dorado);
+  font-size: 0.92rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.pauze-customer-reviews__item-title {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--pauze-cacao);
+  margin: 0 0 0.55rem;
+}
+.pauze-customer-reviews__item-text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--pauze-off-black);
+  margin: 0;
+}
+
+/* PAGINATION */
+.pauze-customer-reviews__pagination {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.pauze-customer-reviews__page {
+  background: white;
+  border: 1px solid var(--pauze-arena);
+  padding: 0.5rem 0.95rem;
+  border-radius: 8px;
+  font-family: var(--pauze-font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--pauze-cacao);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pauze-customer-reviews__page:hover { border-color: var(--pauze-verde); }
+.pauze-customer-reviews__page--active {
+  background: var(--pauze-cacao);
+  color: var(--pauze-crema);
+  border-color: var(--pauze-cacao);
+}
+.pauze-customer-reviews__page-dots { color: var(--pauze-gris); padding: 0 0.4rem; }
+</style>
+
+{% schema %}
+{
+  "name": "Pauze: Customer Reviews",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Reseña",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nombre", "default": "Cliente" },
+        { "type": "text", "id": "initial", "label": "Inicial", "default": "C" },
+        { "type": "text", "id": "date", "label": "Fecha", "default": "junio 2026" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Excelente" },
+        { "type": "textarea", "id": "text", "label": "Texto" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Pauze: Customer Reviews",
+      "blocks": [
+        { "type": "review", "settings": { "name": "Tierny L.", "initial": "T", "date": "junio 2026", "title": "Hasta ahora todo bien", "text": "Honestamente es muy pronto para opinar. Lo estoy tomando hace 2 semanas. Revisame en un mes y te cuento, pero hasta acá venimos bien." } },
+        { "type": "review", "settings": { "name": "Michele D.", "initial": "M", "date": "junio 2026", "title": "Problema resuelto", "text": "Hace 2 años que no podía dormir corrido. Pauze hace 3 semanas y duermo de noche. No sabía cuanto extrañaba esto." } },
+        { "type": "review", "settings": { "name": "Jaynee R.", "initial": "J", "date": "junio 2026", "title": "Increíble", "text": "Me encanta este producto. Desde que lo tomo no tuve más problemas para conciliar. Mi nutricionista también lo recomendó." } },
+        { "type": "review", "settings": { "name": "Stephanie J.", "initial": "S", "date": "junio 2026", "title": "Era escéptica", "text": "Después de la menopausia me costaba un montón dormir. Esto realmente funciona. No lo puedo creer." } },
+        { "type": "review", "settings": { "name": "E.", "initial": "E", "date": "junio 2026", "title": "Bueno", "text": "Bueno." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

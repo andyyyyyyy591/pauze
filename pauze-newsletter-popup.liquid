@@ -1,0 +1,194 @@
+{% comment %}
+  PAUZE NEWSLETTER POPUP — Modal 10% OFF aparece a los 8s
+  Usa sessionStorage para no mostrarlo dos veces en la misma sesión
+{% endcomment %}
+
+<div class="pauze-popup" id="pauzePopup" role="dialog" aria-modal="true" aria-labelledby="pauzePopupTitle" data-section-id="{{ section.id }}">
+  <div class="pauze-popup__overlay" onclick="pauzeClosePopup()"></div>
+  <div class="pauze-popup__modal">
+    <button class="pauze-popup__close" onclick="pauzeClosePopup()" aria-label="Cerrar">×</button>
+
+    <div class="pauze-popup__visual">
+      <span class="pauze-popup__emoji">{{ section.settings.emoji | default: '🌙' }}</span>
+    </div>
+
+    <h2 class="pauze-popup__title" id="pauzePopupTitle">
+      {{ section.settings.title | default: '10% OFF en tu primera compra' }}
+    </h2>
+    <p class="pauze-popup__sub">{{ section.settings.sub | default: 'Sumate al ritual. Recibí tips de sueño + 10% OFF que podés usar hoy.' }}</p>
+
+    <form class="pauze-popup__form" onsubmit="pauzeSubmitPopup(event)">
+      <input type="email" 
+             placeholder="tu@email.com" 
+             required 
+             class="pauze-input pauze-popup__email"
+             id="pauzePopupEmail">
+      <button type="submit" class="pauze-btn pauze-btn--verde pauze-btn--block">
+        {{ section.settings.cta | default: 'QUIERO MI 10% OFF →' }}
+      </button>
+    </form>
+
+    <button class="pauze-popup__no-thanks" onclick="pauzeClosePopup()">
+      {{ section.settings.no_thanks | default: 'No, gracias' }}
+    </button>
+
+    <p class="pauze-popup__legal">{{ section.settings.legal | default: 'Sin spam. Cancelás cuando quieras.' }}</p>
+  </div>
+</div>
+
+<style>
+.pauze-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.pauze-popup.is-open { display: flex; }
+.pauze-popup__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 22, 18, 0.7);
+  backdrop-filter: blur(6px);
+  animation: pauze-fade-in 0.3s ease;
+}
+@keyframes pauze-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.pauze-popup__modal {
+  position: relative;
+  background: var(--pauze-crema);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  animation: pauze-pop-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes pauze-pop-in {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.pauze-popup__close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--pauze-arena);
+  border: none;
+  color: var(--pauze-cacao);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pauze-popup__visual {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--pauze-verde), var(--pauze-verde-dark));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 12px 30px rgba(59, 122, 44, 0.35);
+}
+.pauze-popup__emoji { font-size: 2.5rem; }
+.pauze-popup__title {
+  font-family: var(--pauze-font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 2rem;
+  color: var(--pauze-cacao);
+  line-height: 1.15;
+  margin: 0 0 0.65rem;
+}
+.pauze-popup__sub {
+  font-size: 0.95rem;
+  color: var(--pauze-gris-dark);
+  line-height: 1.5;
+  margin: 0 0 1.5rem;
+}
+.pauze-popup__form { display: flex; flex-direction: column; gap: 0.65rem; }
+.pauze-popup__no-thanks {
+  background: transparent;
+  border: none;
+  color: var(--pauze-gris-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 1rem;
+  text-decoration: underline;
+}
+.pauze-popup__legal {
+  font-size: 0.7rem;
+  color: var(--pauze-gris);
+  font-style: italic;
+  margin-top: 1rem;
+}
+</style>
+
+<script>
+(function() {
+  const POPUP_KEY = 'pauze_popup_dismissed';
+  const DELAY_MS = {{ section.settings.delay | default: 8000 }};
+
+  function pauzeShowPopup() {
+    if (sessionStorage.getItem(POPUP_KEY)) return;
+    const popup = document.getElementById('pauzePopup');
+    if (popup) popup.classList.add('is-open');
+  }
+
+  window.pauzeClosePopup = function() {
+    const popup = document.getElementById('pauzePopup');
+    if (popup) popup.classList.remove('is-open');
+    sessionStorage.setItem(POPUP_KEY, '1');
+  };
+
+  window.pauzeSubmitPopup = function(event) {
+    event.preventDefault();
+    const email = document.getElementById('pauzePopupEmail').value;
+    // Integración con Shopify Customer / Klaviyo / Omnisend cuando esté
+    fetch('/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ form_type: 'customer', 'contact[email]': email, 'contact[tags]': 'popup,first-purchase-10off' })
+    }).catch(() => {});
+    alert('¡Listo! Te mandamos un email con el código PAUZE10 (10% OFF).');
+    pauzeClosePopup();
+  };
+
+  // Trigger por tiempo
+  setTimeout(pauzeShowPopup, DELAY_MS);
+
+  // Trigger por exit-intent (desktop)
+  document.addEventListener('mouseout', function(e) {
+    if (e.clientY < 30 && !e.relatedTarget) pauzeShowPopup();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Pauze: Newsletter popup",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "emoji", "label": "Emoji header", "default": "🌙" },
+    { "type": "text", "id": "title", "label": "Título", "default": "10% OFF en tu primera compra" },
+    { "type": "textarea", "id": "sub", "label": "Subtítulo" },
+    { "type": "text", "id": "cta", "label": "CTA", "default": "QUIERO MI 10% OFF →" },
+    { "type": "text", "id": "no_thanks", "label": "Texto 'no gracias'", "default": "No, gracias" },
+    { "type": "text", "id": "legal", "label": "Legal", "default": "Sin spam. Cancelás cuando quieras." },
+    { "type": "range", "id": "delay", "label": "Delay (ms)", "min": 3000, "max": 30000, "step": 1000, "default": 8000, "unit": "ms" }
+  ],
+  "presets": [{ "name": "Pauze: Newsletter popup" }]
+}
+{% endschema %}

@@ -1,0 +1,294 @@
+{% comment %}
+  PAUZE HOME HERO — Réplica del hero de O Positiv homepage
+  Estructura idéntica: Eyebrow + H1 grande con cursiva + sub + CTA + trust strip + imagen lifestyle
+  Diferencia con pauze-pdp-hero: este es más editorial, menos centrado en compra inmediata
+{% endcomment %}
+
+<section class="pauze-home-hero" data-section-id="{{ section.id }}">
+  <div class="pauze-home-hero__bg">
+    <div class="pauze-home-hero__glow pauze-home-hero__glow--verde"></div>
+    <div class="pauze-home-hero__glow pauze-home-hero__glow--orange"></div>
+  </div>
+
+  <div class="pauze-home-hero__inner">
+    <div class="pauze-home-hero__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="pauze-eyebrow pauze-eyebrow--crema">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      <h1 class="pauze-home-hero__title">
+        {{ section.settings.heading_pre | default: 'Apagá la noche.' }}
+        <span class="pauze-home-hero__title-italic">{{ section.settings.heading_italic | default: 'Hacé tu pausa.' }}</span>
+      </h1>
+
+      <p class="pauze-home-hero__sub">{{ section.settings.subheading | default: 'Tu postre nocturno con L-teanina, apigenina y magnesio. Sin melatonina, sin azúcar agregada, sin resaca.' }}</p>
+
+      <div class="pauze-home-hero__ctas">
+        <a href="{{ section.settings.cta_url | default: '/products/pauze-cocoa' }}" class="pauze-btn pauze-btn--verde pauze-btn--lg">
+          {{ section.settings.cta_text | default: 'COMPRAR · $39.900' }}
+        </a>
+        <a href="{{ section.settings.cta2_url | default: '/pages/ciencia' }}" class="pauze-btn pauze-btn--outline-crema">
+          {{ section.settings.cta2_text | default: 'Cómo funciona →' }}
+        </a>
+      </div>
+
+      <div class="pauze-home-hero__trust">
+        <div class="pauze-home-hero__trust-item">
+          <span class="pauze-home-hero__trust-icon">🌙</span>
+          <span>Sin melatonina</span>
+        </div>
+        <div class="pauze-home-hero__trust-divider"></div>
+        <div class="pauze-home-hero__trust-item">
+          <span class="pauze-home-hero__trust-icon">🍫</span>
+          <span>Sin azúcar agregada</span>
+        </div>
+        <div class="pauze-home-hero__trust-divider"></div>
+        <div class="pauze-home-hero__trust-item">
+          <span class="pauze-home-hero__trust-icon">🇦🇷</span>
+          <span>Hecho en Argentina</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pauze-home-hero__visual">
+      {% if section.settings.hero_image != blank %}
+        <img
+          src="{{ section.settings.hero_image | image_url: width: 1200 }}"
+          srcset="{{ section.settings.hero_image | image_url: width: 600 }} 600w, {{ section.settings.hero_image | image_url: width: 1200 }} 1200w"
+          sizes="(max-width: 768px) 100vw, 600px"
+          alt="Pauze - chocolatada funcional"
+          width="600"
+          height="700"
+          loading="eager"
+          class="pauze-home-hero__img">
+      {% else %}
+        <div class="pauze-home-hero__placeholder">
+          {% render 'pauze-doypack', size: 'xlarge', shadow: true %}
+          <div class="pauze-home-hero__steam"></div>
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_ranking_card %}
+        <div class="pauze-home-hero__ranking">
+          <div class="pauze-home-hero__ranking-num">#1</div>
+          <div class="pauze-home-hero__ranking-text">
+            <strong>{{ section.settings.ranking_title | default: 'PM Blend' }}</strong>
+            <span>{{ section.settings.ranking_sub | default: 'en Argentina' }}</span>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pauze-home-hero {
+    position: relative;
+    background: var(--pauze-cacao-dark);
+    color: var(--pauze-crema);
+    overflow: hidden;
+    padding: 4rem 1.5rem 5rem;
+  }
+  @media (min-width: 768px) {
+    .pauze-home-hero { padding: 6rem 1.5rem 7rem; }
+  }
+  .pauze-home-hero__bg {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .pauze-home-hero__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.35;
+  }
+  .pauze-home-hero__glow--verde {
+    top: 10%; left: -10%;
+    width: 500px; height: 500px;
+    background: var(--pauze-verde);
+  }
+  .pauze-home-hero__glow--orange {
+    bottom: 0; right: -15%;
+    width: 400px; height: 400px;
+    background: var(--pauze-naranja);
+    opacity: 0.25;
+  }
+
+  .pauze-home-hero__inner {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (min-width: 968px) {
+    .pauze-home-hero__inner {
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  .pauze-home-hero__content { z-index: 2; }
+  .pauze-home-hero__title {
+    font-family: var(--pauze-font-display);
+    font-size: clamp(2.75rem, 8vw, 5.5rem);
+    line-height: 1;
+    font-weight: 600;
+    margin: 1rem 0 1.25rem;
+    color: var(--pauze-crema);
+    letter-spacing: -0.025em;
+  }
+  .pauze-home-hero__title-italic {
+    display: block;
+    font-style: italic;
+    color: var(--pauze-verde-bright);
+    font-weight: 700;
+  }
+  .pauze-home-hero__sub {
+    font-family: var(--pauze-font-body);
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.55;
+    color: rgba(246, 241, 233, 0.85);
+    max-width: 540px;
+    margin: 0 0 2rem;
+  }
+  .pauze-home-hero__ctas {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .pauze-btn--lg {
+    padding: 1.1rem 2rem !important;
+    font-size: 1rem !important;
+  }
+  .pauze-btn--outline-crema {
+    background: transparent;
+    color: var(--pauze-crema);
+    border: 1.5px solid rgba(246, 241, 233, 0.4);
+    padding: 1.05rem 1.75rem;
+    border-radius: 999px;
+    font-family: var(--pauze-font-body);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .pauze-btn--outline-crema:hover {
+    background: rgba(246, 241, 233, 0.1);
+    border-color: var(--pauze-crema);
+  }
+
+  .pauze-home-hero__trust {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: rgba(246, 241, 233, 0.75);
+  }
+  .pauze-home-hero__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .pauze-home-hero__trust-icon { font-size: 1.1rem; }
+  .pauze-home-hero__trust-divider {
+    width: 4px; height: 4px;
+    background: var(--pauze-verde-bright);
+    border-radius: 50%;
+  }
+
+  .pauze-home-hero__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  .pauze-home-hero__img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  }
+  .pauze-home-hero__placeholder {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pauze-home-hero__steam {
+    position: absolute;
+    top: -40px; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 80px;
+    background: linear-gradient(to top, rgba(246, 241, 233, 0.2), transparent);
+    filter: blur(8px);
+    animation: pauze-steam 4s ease-in-out infinite;
+  }
+  @keyframes pauze-steam {
+    0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0) scale(1); }
+    50% { opacity: 0.7; transform: translateX(-50%) translateY(-20px) scale(1.2); }
+  }
+
+  .pauze-home-hero__ranking {
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    background: var(--pauze-crema);
+    color: var(--pauze-cacao);
+    border-radius: 12px;
+    padding: 0.85rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    z-index: 3;
+  }
+  .pauze-home-hero__ranking-num {
+    font-family: var(--pauze-font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--pauze-verde-dark);
+    line-height: 1;
+  }
+  .pauze-home-hero__ranking-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.78rem;
+  }
+  .pauze-home-hero__ranking-text strong {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pauze-home-hero__ranking-text span {
+    color: rgba(58, 41, 27, 0.7);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pauze Home Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PAUSE PM BLEND · 30 PORCIONES" },
+    { "type": "text", "id": "heading_pre", "label": "H1 - Línea 1", "default": "Apagá la noche." },
+    { "type": "text", "id": "heading_italic", "label": "H1 - Línea 2 (italic verde)", "default": "Hacé tu pausa." },
+    { "type": "textarea", "id": "subheading", "label": "Subtitle", "default": "Tu postre nocturno con L-teanina, apigenina y magnesio. Sin melatonina, sin azúcar agregada, sin resaca." },
+    { "type": "text", "id": "cta_text", "label": "CTA principal", "default": "COMPRAR · $39.900" },
+    { "type": "url", "id": "cta_url", "label": "URL CTA principal" },
+    { "type": "text", "id": "cta2_text", "label": "CTA secundario", "default": "Cómo funciona →" },
+    { "type": "url", "id": "cta2_url", "label": "URL CTA secundario" },
+    { "type": "image_picker", "id": "hero_image", "label": "Imagen hero (lifestyle nocturno)" },
+    { "type": "checkbox", "id": "show_ranking_card", "label": "Mostrar tarjeta #1", "default": true },
+    { "type": "text", "id": "ranking_title", "label": "Ranking título", "default": "PM Blend" },
+    { "type": "text", "id": "ranking_sub", "label": "Ranking sub", "default": "en Argentina" }
+  ],
+  "presets": [{ "name": "Pauze Home Hero" }]
+}
+{% endschema %}
